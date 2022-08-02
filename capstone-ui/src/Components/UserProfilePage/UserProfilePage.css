@@ -187,7 +187,7 @@ Slider styling
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    max-width: 1620px;
+    max-width: 1420px;
 }
 
 .slick-slider .recipe-border-top, .slick-slider .recipe-border-left {
@@ -213,21 +213,21 @@ Slider styling
     background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
-@media only screen and (max-width: 1650px) {
+@media only screen and (max-width: 1775px) {
     .slick-slider {
-        max-width: 1450px !important;
+        max-width: 1120px !important;
     }
 }
 
-@media only screen and (max-width: 1575px) {
+@media only screen and (max-width: 1425px) {
     .slick-slider {
-        max-width: 1250px !important;
+        max-width: 700px !important;
     }
 }
 
-@media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1050px) {
     .slick-slider {
-        max-width: 1050px !important;
+        max-width: 350px !important;
     }
 }
 
@@ -244,4 +244,11 @@ Slider styling
     box-shadow: 0px 0px 10px lightgray;
     padding: 28px;
     border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.saved-carousel .display-dropdown {
+    align-self: flex-start;
 }
