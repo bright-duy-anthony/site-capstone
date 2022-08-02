@@ -7,6 +7,14 @@
     box-shadow: 0px 0px 10px lightgrey;
 }
 
+.recipe-container #form-file-upload {
+    display: block !important;
+}
+
+.recipe-container #form-file-upload .error {
+    padding: 0;
+}
+
 .recipe-container .recipe-add {
     color: black;
     padding: 30px;
