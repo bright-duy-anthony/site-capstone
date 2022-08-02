@@ -166,6 +166,7 @@ return (
    <div className="shopping-list">
             <h2>Shopping List</h2>
             <div className="list">
+               {!ingredientList.length ? <h3>Nothing here yet! Add a recipe to create a shopping list.</h3> : null}
                {ingredientList?.map((ingr, idx) => {
                   shoppingList.push(ingr);
                   const str=ingr.replace(/ /g, '')

@@ -215,7 +215,7 @@ function RecipeReview({recipeId}) {
   //use State for review form
   const [comment, setComment] = React.useState("")
 
-  const {user, isLoading, setIsLoading, setError, showLoginForm, reviews, setReviews} = useAuthNavContext()
+  const {user, isLoading, setIsLoading, setError, showLoginForm, reviews, setReviews, showRegisterForm} = useAuthNavContext()
 
   //fetch all current review on render
   React.useEffect(()=> {
@@ -269,6 +269,7 @@ function RecipeReview({recipeId}) {
     setIsLoading(false)
   }
 
+
   return(
     <div className="recipe-review-main" id="review-scroll">
       <h1>Reviews</h1>
@@ -276,7 +277,7 @@ function RecipeReview({recipeId}) {
       <div className="add-review">
         <div className='add-review-image'>
         {
-          user
+          user?.imageUrl
           ?
           <img src={user.imageUrl} alt="user profile" />
           :
@@ -284,11 +285,16 @@ function RecipeReview({recipeId}) {
         }
         </div>
         <div className='add-review-text'>
-          <TextareaAutosize placeholder='Leave a review' onChange={handleOnInputChange} value={comment} style={{ minHeight: 20}}/>
+          {/* Conditional rendering for when the user is logged in/ not logged in */}
+          {user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 20}}/>
+          : <span>You must be <span className="links" onClick={showLoginForm}>logged in</span> to leave a review. Don't have an account? Sign up <span className="links" onClick={showRegisterForm}>here!</span></span>
+          }
           <hr />
-          <button onClick={handleOnPost}>{isLoading ? "Loading" : "Post"}</button>
+          {user?.email ? <button disabled={!user?.email} onClick={handleOnPost}>{isLoading ? "Loading" : "Post"}</button> : null}
           </div>
       </div>
+        {/* Message for when there are no recipe yet */}
+      {!reviews.length ? <h3>No reviews yet. Be the first to leave a review!</h3> : null}
 
       <br />
       {reviews.map((review) => (
