@@ -180,9 +180,9 @@ return (
                })}
             </div>
             <div className="shopping-list-footer">
-               <button onClick={()=>{
+               {!ingredientList.length ? null : <button disabled={!ingredientList.length} onClick={()=>{
                   sendsms();
-               }}>Send Shopping List</button>
+               }}>Send Shopping List</button>}
             </div>
    </div>
 </div>

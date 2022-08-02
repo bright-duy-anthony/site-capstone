@@ -17,21 +17,12 @@ export default function UserProfilePage() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     adaptiveHeight: true,
     responsive: [
       {
-        breakpoint: 1575,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 1400,
+        breakpoint: 1775,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -40,18 +31,19 @@ export default function UserProfilePage() {
         }
       },
       {
-        breakpoint: 1050,
+        breakpoint: 1425,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
+          infinite: true,
+          dots: true
         }
       },
       {
-        breakpoint: 850,
+        breakpoint: 1050,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
         }
       }
     ]
