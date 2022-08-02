@@ -183,9 +183,9 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
             :
             followingOrNot
             ? 
-            <button className="detail-following-button" onClick={handleOnClickFollowingBtn}> <img src="https://cdn.icon-icons.com/icons2/2367/PNG/512/user_unfollow_icon_143481.png" alt="unfollow button" /> unfollow </button>
+            <button className="detail-following-button" onClick={handleOnClickFollowingBtn}> <img src="https://icon-library.com/images/unfriend-icon/unfriend-icon-16.jpg" alt="unfollow button" /> unfollow </button>
             :
-            <button className="detail-follow-button" onClick={handleOnClickFollowingBtn}> <img src="https://cdn.icon-icons.com/icons2/2367/PNG/512/user_follow_icon_143485.png" alt="follow button" /> follow </button>
+            <button className="detail-follow-button" onClick={handleOnClickFollowingBtn}> <img src="https://static.thenounproject.com/png/2836319-200.png" alt="follow button" /> follow </button>
             }
           </div>
 
