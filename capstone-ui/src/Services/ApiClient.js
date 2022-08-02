@@ -1,4 +1,6 @@
 import axios from "axios"
+const {DEVELOPMENT_API_URL,
+    PRODUCTION_API_URL} = require("../constants")
 
 class ApiClient {
     constructor(remoteHostUrl) {
@@ -179,4 +181,5 @@ class ApiClient {
     }
 }
 
-export default new ApiClient("http://localhost:3001")
+export default new ApiClient(DEVELOPMENT_API_URL)
+// export default new ApiClient(PRODUCTION_API_URL)
