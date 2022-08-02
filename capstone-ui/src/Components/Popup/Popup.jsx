@@ -6,12 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import MealPlannerSuggestion from '../MealPlannerSuggestion/MealPlannerSuggestion'
 import PhoneInput from 'react-phone-input-2'
 
-
-
-
-
-
-
 export default function Popup(){
     //needed functions from useAuthNavContext
     const {popupType, closePopup, showRegisterForm, showLoginForm, error, setError, setUser, isLoading, setIsLoading, user, setMealPlan, getMealPlan, deleteAction, setDeleteAction, deleteAllGetMealPlan, isPwChanged, setIsPwChanged, displaySuggestion, setDisplaySuggestion, setReviews} = useAuthNavContext()

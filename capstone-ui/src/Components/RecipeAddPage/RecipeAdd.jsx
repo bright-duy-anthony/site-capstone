@@ -5,10 +5,11 @@ import {useAuthNavContext} from "../../Contexts/authNav"
 import apiClient from "../../Services/ApiClient"
 import items from '../../Data/categoryItem.json'
 import Overlay from '../Overlay/Overlay'
+import DragDropFile from '../DragDrop/DragDrop'
 
 
 export default function RecipeAdd({imageUrl}) {
-  const {error, setError, isLoading, setIsLoading, user} = useAuthNavContext()
+  const {error, setError, isLoading, setIsLoading, user, file, setFile} = useAuthNavContext()
   const navigate = useNavigate()
   const [form, setForm] = React.useState({
     name: '',
@@ -17,7 +18,7 @@ export default function RecipeAdd({imageUrl}) {
     instructions: [''],
     ingredients: [""],
     calories: '',
-    image_url: '',
+    image_url: file?.fileByteA ? file?.fileByteA : null,
 
 })
 
@@ -38,7 +39,7 @@ const handleOnInputChange = (event) => {
         instructions: form.instructions.join("."),
         ingredients: form.ingredients.join(","),
         calories: form.calories,
-        image_url: form.image_url,
+        image_url: file?.fileByteA ? file?.fileByteA : "",
         
     })
     errorUse = error
@@ -47,7 +48,7 @@ const handleOnInputChange = (event) => {
     if(data){
         navigate(`/recipe/${data?.recipe?.id}`)
     }
-
+    setFile({})
     setIsLoading(false)
 }
 
@@ -187,8 +188,10 @@ const removeInstruction = (index) => {
                 <input type="number" name="calories" value={form.calories} onChange={handleOnInputChange}/>
             </div>
             <div className="input-field">
-                <label htmlFor="Image_url">Image URL</label>
-                <input type="url" name="image_url" value={form.image_url} onChange={handleOnInputChange}/>
+                {/* Using drag and drop upload file instead of image URL */}
+                <label htmlFor="Image">Image</label>
+                <DragDropFile />
+
             </div>
             <div className="input-field">
                 <label htmlFor="Ingredients">Ingredients (no commas (,))</label>
