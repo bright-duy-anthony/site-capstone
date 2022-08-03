@@ -165,6 +165,24 @@ const removeInstruction = (index) => {
     setForm((f) => ({...f, instructions : instructionClone}))
 }
 
+// this ref references the current ingredients ref
+const currIngredient = React.useRef(null)
+
+// this ref references the current instruction ref
+const currInstruction = React.useRef(null)
+
+React.useEffect(() => {
+
+    // define a function to run in the useEffect
+    async function run(){
+        // move the cursor to the new ingredients input
+    // currIngredient.current.focus()
+    }
+
+    // run the function
+    run()
+}, [form])
+
   return (
     <div className='recipe-container'> 
     {(error?.form) ? <span className="error">{error?.form}</span> : null}
@@ -198,6 +216,14 @@ const removeInstruction = (index) => {
                 <div className="ingredient-list">
                     {
                         form.ingredients.map((ingredient, idx) => {
+                            if(idx === form.ingredients.length-1){
+                                return(
+                                    <div className='ingredient-cap' key={idx}>
+                                        <input type="text" name="ingredients" value={ingredient} onChange={(event) => handleIngredient(event, idx)} onKeyDown={handleKeyDownIngredients} ref={currIngredient} autoFocus/>
+                                        <button onClick={() => removeIngredient(idx)}>X</button>
+                                    </div>
+                                )
+                            }
                             return(
                                 <div className='ingredient-cap' key={idx}>
                                     <input type="text" name="ingredients" value={ingredient} onChange={(event) => handleIngredient(event, idx)} onKeyDown={handleKeyDownIngredients}/>
@@ -222,6 +248,14 @@ const removeInstruction = (index) => {
                 <div className="instruction-list">
                     {
                         form.instructions.map((instruction, idx) => {
+                            if(idx === form.instructions.length-1){
+                                return(
+                                <div className='instruction-cap' key={idx}>
+                                    <input type="text" name="instructions" rows="6" value={instruction}  onChange={(event) => handleInstruction(event, idx)} onKeyDown={handleKeyDownInstruction} autoFocus/>
+                                    <button onClick={() => {removeInstruction(idx)}}>X</button>
+                                </div>
+                                )
+                            }
                             return(
                                 <div className='instruction-cap' key={idx}>
                                     <input type="text" name="instructions" rows="6" value={instruction}  onChange={(event) => handleInstruction(event, idx)} onKeyDown={handleKeyDownInstruction}/>
