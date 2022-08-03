@@ -1,0 +1,145 @@
+.about-page {
+    position: relative;
+    width: 100%;
+    padding: 30px;
+}
+
+.about-section{
+    width: 100%;
+}
+
+.about-title{
+    width: 100%;
+    padding: 30px 0px;
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.about-title h1{
+    margin: 0px 0px 0px 10px;
+    width: fit-content;
+}
+
+.about-content{
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 0px 10px lightgray;
+    border-radius: 12px;
+    width: auto;
+    padding: 5px 0px;
+}
+
+.about-section-content {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-section-card-area{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.person-card{
+    max-width: calc(16/ 9 * var(--recipe-img-height));
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 2px #e4ebf2;
+    margin: 5px 10px;
+    overflow: hidden;
+}
+
+.card-img{
+    max-width: calc(16/ 9 * var(--recipe-img-height));
+    max-height: var(--recipe-img-height);
+    min-height: 200px;
+}
+
+.card-img img{
+    max-width: calc(16/ 9 * var(--recipe-img-height));
+    max-height: var(--recipe-img-height);
+    min-height: var(--recipe-img-height);
+    min-width: calc(16/ 9 * var(--recipe-img-height));
+    object-fit: cover;
+}
+
+.card-text{
+    padding: 10px;
+}
+
+p.about-title-about{
+    margin: 0px;
+}
+
+.social-media-link img{
+    width: 40px;
+    height: 40px;
+}
+
+.about-section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.contact-form{
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 0px 10px lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    align-items: flex-start;
+    gap: 12px;
+    width: 700px;
+}
+
+.contact-button{
+    align-self: flex-end;
+    background-color: var(--primary-color);
+    padding: 12px;
+    border-radius: 12px;
+    color: aliceblue;
+    outline: none;
+    border: 0px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-button:hover{
+    background-color: gray;
+}
+
+.contact-submitted{
+    color: var(--primary-color);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.contact-submitted > p{
+    margin-bottom: 0px;
+}
+
+.contact-form p.error{
+    margin: 0px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 20px;
+    background: white;
+    padding-left: 10px;
+    padding-right: 5px;
+    background-color: white;
+    border: 3px solid var(--border-color);
+}

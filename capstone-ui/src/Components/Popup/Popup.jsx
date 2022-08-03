@@ -128,20 +128,6 @@ export default function Popup(){
         }
     }
 
-    // Function that runs when the input field is not focused on
-    const handleOnFormInputBlurMealPlanner = (event) => {
-        //prevent the events default behaviour  
-        event.preventDefault()
-
-        // if the input field is empty then do not disply suggestions
-        
-        if( formPlan.recipe_name === "" || formPlan.recipe_name === " "){
-            // do not display the suggestions
-            setDisplaySuggestion(false)
-        }
-
-    }
-    
     //Function that handles the value of form for mealplanner add button form
     const handleOnFormInputChangeMealPlannerAdd = (event) => {
         //prevent the events default behaviour  
@@ -202,6 +188,7 @@ export default function Popup(){
                 setIsLoading(false)
                 return
             }
+            
 
             const {data, error} = await apiClient.createMealPlan({
                 recipe_id: dataprior.data.recipe_id.id,
@@ -391,7 +378,6 @@ export default function Popup(){
             <div className="input-field">
                 <label htmlFor="RecipeName">Recipe's Name</label>
                 <input type="name" name="recipe_name" onChange={handleOnFormInputChangeMealPlanner} onFocus={handleOnFormInputFocusMealPlanner} ref={inputRef} />
-                {/* <input type="name" name="recipe_name" onChange={handleOnFormInputChangeMealPlanner} onFocus={handleOnFormInputFocusMealPlanner} onBlur={handleOnFormInputBlurMealPlanner}/> */}
             </div>
             <div className="meal-suggestion">
                 {displaySuggestion 
