@@ -2,8 +2,26 @@ import * as React from 'react'
 import './AboutUs.css'
 import Bright from '../../Assets/Bright.JPG'
 import {Link} from 'react-router-dom'
+import TextareaAutosize from 'react-autosize-textarea';
+
 
 export default function AboutUs() {
+
+  // contact form state variable
+  const [contactForm, setContactForm] = React.useState({
+    title : "",
+    email : "",
+    body : ""
+  })
+
+  // handle contact form on change
+  const handleContactFormOnChange = (event) => {
+    // prevent default behaviour
+    event.preventDefault()
+
+    // set the form 
+    setContactForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+  }
   return (
     <div className='about-page'>
         <div className="about-content">
@@ -172,13 +190,15 @@ export default function AboutUs() {
               <h1> Contact </h1>
             </div>
             <div className="about-section-content">
+              <div className="contact-form">
                 <label htmlFor="title">Title</label>
-                <input type="text" name='title' />
-                <label htmlFor="email">email</label>
-                <input type="email" name="email"/>
+                <input type="text" name='title' onChange={handleContactFormOnChange}/>
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email"  onChange={handleContactFormOnChange} placeholder='janedoe@gmail.com'/>
                 <label htmlFor="detail">Body</label>
-                <textarea name="detail" id="" cols="30" rows="10"></textarea>
-                <button> send </button>
+                <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body'  onChange={handleContactFormOnChange}/>
+                <button className='contact-button'> send </button>
+              </div>
             </div>
           </div>
         </div>
