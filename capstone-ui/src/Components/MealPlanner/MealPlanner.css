@@ -44,6 +44,8 @@
     border-radius: 12px;
     min-width: 164px;
     min-height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
     padding: 5%;
     margin: 2%;
     display: flex;
@@ -62,8 +64,6 @@
     padding: 8px;
     border: 1px solid var(--border-color);
     box-shadow: 0px 0px 3px lightgray;
-
-    overflow: hidden;
     background: linear-gradient(to right, rgba(12, 12, 12, 0.932), rgba(12, 12, 12, 0.932) 50%, white 50%);
     background-size: 201% 100%;
     background-position: 100%;
@@ -168,5 +168,25 @@ Shopping list styling
     }
     100%{
         transform: translateX(4px);
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .MealPlannerPage .background {
+        min-width: 184px !important;
+    }
+
+    .MealPlannerPage .recipes {
+        min-width: 146px !important;
+    }
+}
+
+@media only screen and (max-width: 1435px) {
+    .MealPlannerPage .background {
+        min-width: 184px !important;
+    }
+
+    .MealPlannerPage .recipes {
+        min-width: 146px !important;
     }
 }

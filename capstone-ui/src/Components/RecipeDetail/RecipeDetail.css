@@ -64,7 +64,6 @@
     flex: 2.5;
     display: flex;
     flex-direction: column;
-    max-height: 350px;
     justify-content: space-between;
     padding-left: 13px;
 }
@@ -225,4 +224,10 @@ Review section styling
     justify-content: center;
     align-items: center;
     display: flex;
+}
+
+.dots {
+    text-decoration: underline;
+    color: var(--primary-color);
+    cursor: pointer;
 }
