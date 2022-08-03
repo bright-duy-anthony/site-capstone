@@ -165,6 +165,7 @@ return (
    </div>
    <div className="shopping-list">
             <h2>Shopping List</h2>
+            {ingredientList.length ? <h5>Check the ingredients you already have.</h5> : null}
             <div className="list">
                {!ingredientList.length ? <h3>Nothing here yet! Add a recipe to create a shopping list.</h3> : null}
                {ingredientList?.map((ingr, idx) => {

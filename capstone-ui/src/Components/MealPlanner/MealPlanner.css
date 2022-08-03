@@ -148,6 +148,10 @@ Shopping list styling
     justify-content: flex-end;
 }
 
+.shopping-list h5 {
+    margin: 0;
+}
+
 .shopping-list-footer button {
     height: 30px;
     width: auto;
