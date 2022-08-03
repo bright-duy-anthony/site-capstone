@@ -40,10 +40,11 @@ export default function UserProfilePage() {
         }
       },
       {
-        breakpoint: 1050,
+        breakpoint: 1075,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
         }
       }
     ]
@@ -325,13 +326,13 @@ export default function UserProfilePage() {
           <option name="Created">Created Recipes</option>
           <option name="Saved">Saved Recipes</option>
         </select>
+            {(recipesDisplay === "Saved" && !savedRecipes.length) || (recipesDisplay === "Created" && !createdRecipes.length) ? <h2>No Recipes {recipesDisplay} Yet!</h2> : null}
           <Slider {...settings}>
                 {recipesDisplay === "Saved" ? (savedRecipes?.map((recipe) => (
                     <RecipeCard recipe_url={recipe.image_url} title={recipe.name} calories={recipe.calories} category={recipe.category} recipe_id={recipe.recipe_id} key={recipe.recipe_id} ownername={recipe.ownername} owner_url={recipe.owner_url ? recipe.owner_url : "https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"} owner_id={recipe.ownder_id}/>
                 ))) : (createdRecipes?.map((recipe) => (
                   <RecipeCard recipe_url={recipe.image_url} title={recipe.name} calories={recipe.calories} category={recipe.category} recipe_id={recipe.id} key={recipe.id} ownername={user.username} owner_url={user.imageUrl ? user.imageUrl : "https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"} owner_id={recipe.ownder_id}/>
               )))}
-                {(recipesDisplay === "Saved" && !savedRecipes.length) || (recipesDisplay === "Created" && !createdRecipes.length) ? <h2>No Recipes {recipesDisplay} Yet!</h2> : null}
           </Slider>
         </div>
         <Overlay />

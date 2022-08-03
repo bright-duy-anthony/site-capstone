@@ -41,6 +41,8 @@ export default function RecipeDetail() {
       <RecipeStep recipe={recipe}/>
         
       <RecipeReview recipeId={recipeId}/>
+
+      <Overlay />
     </div>
   )
 }
@@ -49,6 +51,7 @@ export default function RecipeDetail() {
 function RecipeMain(recipe){
   const [savedrecipe, setSavedRecipe] = React.useState([])
   const [isSaved, setIsSaved] = React.useState(false)
+  const [longDescription, setLongDescription] = React.useState(false)
   const {recipeId} = useParams()
   const {setError, user, showLoginForm, showMealPlannerAddForm, setPopupType, setDeleteAction, showPopup} = useAuthNavContext()
 
@@ -97,7 +100,10 @@ function RecipeMain(recipe){
             return "This recipe has no description"
         }
         else{
-            return stripHtml(recipe.recipe.description).result
+          const strArr = stripHtml(recipe.recipe.description).result.split(". ")
+          const seeLess = strArr.slice(0,Math.floor(strArr.length / 3)).join(". ")
+          const seeMore = strArr.slice(Math.floor(strArr.length / 3) + 1).join(". ")
+          return [seeLess, seeMore]
         }
 
     }
@@ -149,7 +155,9 @@ function RecipeMain(recipe){
             <h3> Recipe by <Link style={{textDecoration: 'none'}} to={`/profile/${recipe?.recipe?.user_id}`}>{recipe.recipe.username}</Link></h3>
             <h4> Categories : {recipe.recipe.category?.charAt(0).toUpperCase()+ recipe.recipe.category?.slice(1)} </h4>
             <h4> Calories: {recipe.recipe.calories} kcal</h4>
-            <h4> {presentableDescription()} </h4>
+            <div>
+              <p>{presentableDescription()[0]+ ". "}{longDescription? null : <span className='dots' onClick={() => setLongDescription(e => !e)}>(See More)</span>}{longDescription ? <span className='more'>{presentableDescription()[1]}</span> : null}{longDescription? <span className='dots' onClick={() => setLongDescription(e => !e)}> (See Less)</span> : null}</p>
+            </div>
           </div>
         </div>
           
@@ -162,7 +170,6 @@ function RecipeMain(recipe){
           {/* Recipe Delete button */}
           {recipe.recipe.user_id===user.id && <button onClick={deleteRecipe}> Delete </button>}      
         </div>
-        <Overlay />
       </div>
   )
 }
