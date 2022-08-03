@@ -11,8 +11,8 @@ export default function SearchResultCard({even, recipe}) {
 
     const presentableDescription = () => {
         // function to cut description string
-        if(recipe.description.length > 417){
-            return stripHtml(recipe.description).result.substring(0,417) + "..."
+        if(recipe.description.length > 217){
+            return stripHtml(recipe.description).result.substring(0,217) + "..."
         }
         else{
             return stripHtml(recipe.description).result

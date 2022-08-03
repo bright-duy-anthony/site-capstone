@@ -158,7 +158,7 @@ export default function Navbar(){
             <div className="nav-btns">
                     {user?.email ? null : <img id="login" src="https://img.icons8.com/ios-glyphs/344/login-rounded-right--v1.png" alt="temp icon" className='nav-btn' onClick={showLoginForm}/>}
                     {user?.email ? null : <img id="register" src="https://static.thenounproject.com/png/6478-200.png" alt="temp icon" className='nav-btn' onClick={showRegisterForm}/>}
-                    <Link to="user/1"> 
+                    <Link to="profile"> 
                         {user?.email ?<img id="profile" src="https://icons-for-free.com/iconfiles/png/512/person+user+icon-1320166085409390336.png" alt="temp icon" className='nav-btn' /> : null}
                     </Link>
                     <Link to="/recipe/create">

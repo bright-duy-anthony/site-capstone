@@ -76,7 +76,7 @@ function App() {
               <Route path='/usersearch' element={<UserSearchPage />}/>
               <Route path='/recipe/:recipeId' element={<RecipeDetail />}/>
               <Route path='/recipe/create' element={<RecipeAdd />}/>
-              <Route path='/user/:userId' element={<UserProfilePage />}/>
+              <Route path='/profile' element={<UserProfilePage />}/>
               <Route path='/profile/:profileId' element={<UserDetailPage />}/>
               <Route path='/mealplanner' element={<MealPlanner />}/>
               <Route path='/profile/:profileId/:followType' element={<FollowPage />} />

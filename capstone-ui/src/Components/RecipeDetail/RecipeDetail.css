@@ -231,3 +231,17 @@ Review section styling
     color: var(--primary-color);
     cursor: pointer;
 }
+
+/*--------------------------
+Styling for Ipad
+---------------------------*/
+
+@media only screen and (max-width: 820px) {
+    .recipe-detail-img img {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        border: 7px solid black;
+        box-shadow: rgb(255 127 80 / 89%) 0px 1px 5px;
+    }
+}

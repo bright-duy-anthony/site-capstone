@@ -156,7 +156,7 @@ function RecipeMain(recipe){
             <h4> Categories : {recipe.recipe.category?.charAt(0).toUpperCase()+ recipe.recipe.category?.slice(1)} </h4>
             <h4> Calories: {recipe.recipe.calories} kcal</h4>
             <div>
-              <p>{presentableDescription()[0]+ ". "}{longDescription? null : <span className='dots' onClick={() => setLongDescription(e => !e)}>(See More)</span>}{longDescription ? <span className='more'>{presentableDescription()[1]}</span> : null}{longDescription? <span className='dots' onClick={() => setLongDescription(e => !e)}> (See Less)</span> : null}</p>
+              <p>{presentableDescription()[0]+ ". "}{longDescription? null : <span className='dots' onClick={() => setLongDescription(e => !e)}>(See More)</span>}{longDescription ? <span className='more'>{presentableDescription()[1]} </span> : null}{longDescription? <span className='dots' onClick={() => setLongDescription(e => !e)}>(See Less)</span> : null}</p>
             </div>
           </div>
         </div>
