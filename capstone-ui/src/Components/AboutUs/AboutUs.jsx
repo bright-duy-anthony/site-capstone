@@ -110,17 +110,15 @@ export default function AboutUs() {
                   </p>
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
-                    <Link to='https://www.instagram.com/_brightee/?hl=en'>
-                      <img src="https://similarpng.com/instagram-icon-isolated-on-transparent-background-png-2/" alt="" />
-                    </Link>
-                    <a href="https://cdn.icon-icons.com/icons2/791/PNG/512/instagram_f_icon-icons.com_65485.png" className='social-media-link'><img src="https://similarpng.com/instagram-icon-isolated-on-transparent-background-png-2/" alt="" /></a>
+                    <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
+                      <i class="fa-brands fa-instagram"></i>
+                    </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
                   <p className="about">I am a college student who currently has a passion for 
                   web development and web design. I like to practice leetcode and hackerrank 
                   questions in my free time. I hope to progress into the cyber security field 
                   and one day revolutionize the cyber security field.
-
                   </p>
                   </div>
                 </div>
@@ -141,10 +139,9 @@ export default function AboutUs() {
                   </p>
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
-                    <Link to='https://www.instagram.com/_brightee/?hl=en'>
-                      <img src="https://similarpng.com/instagram-icon-isolated-on-transparent-background-png-2/" alt="" />
-                    </Link>
-                    <a href="https://cdn.icon-icons.com/icons2/791/PNG/512/instagram_f_icon-icons.com_65485.png" className='social-media-link'><img src="https://similarpng.com/instagram-icon-isolated-on-transparent-background-png-2/" alt="" /></a>
+                    <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
+                      <i class="fa-brands fa-instagram"></i>
+                    </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
                   <p className="about">Fill Section. I like to dance butt naked
@@ -172,10 +169,9 @@ export default function AboutUs() {
                   </p>
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
-                    <Link to='https://www.instagram.com/_brightee/?hl=en'>
-                      <img src="https://similarpng.com/instagram-icon-isolated-on-transparent-background-png-2/" alt="" />
-                    </Link>
-                    <a href="https://cdn.icon-icons.com/icons2/791/PNG/512/instagram_f_icon-icons.com_65485.png" className='social-media-link'><img src="https://similarpng.com/instagram-icon-isolated-on-transparent-background-png-2/" alt="" /></a>
+                    <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                    </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
                   <p className="about">Fill Section
