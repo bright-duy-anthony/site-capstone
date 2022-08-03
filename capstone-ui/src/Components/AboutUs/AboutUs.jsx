@@ -2,8 +2,67 @@ import * as React from 'react'
 import './AboutUs.css'
 import Bright from '../../Assets/Bright.JPG'
 import {Link} from 'react-router-dom'
+import TextareaAutosize from 'react-autosize-textarea';
+
 
 export default function AboutUs() {
+
+  // contact form state variable
+  const [contactForm, setContactForm] = React.useState({
+    title : "",
+    email : "",
+    body : ""
+  })
+
+  // handle contact form on change
+  const handleContactFormOnChange = (event) => {
+    // prevent default behaviour
+    event.preventDefault()
+
+    // check if email is valid
+    if(event.target.name === "email"){
+      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
+        setContactError(true)
+      }
+      else{
+        setContactError(false)
+      }
+    }
+    // set the form 
+    setContactForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+
+    
+  }
+
+  // form is submitted state variable
+  const [contactIsSubmitted, setContactIsSubmitted] = React.useState(false)
+
+  // form error state variable
+  const [contactError, setContactError] = React.useState(false)
+
+  const inputRef = React.useRef(null)
+  const emailRef = React.useRef(null)
+  const textAreaRef = React.useRef(null)
+
+  // handle contact form on submit function
+  const submitContact = () => {
+    setContactForm({
+      title : "",
+      email : "",
+      body : ""
+    })
+
+    // if email error do not submit
+    if(contactError || contactForm.email === ""){
+      return 
+    }
+
+    setContactIsSubmitted(true)
+    inputRef.current.value = ""
+    emailRef.current.value = ""
+    textAreaRef.current.value = ""
+    
+  }
   return (
     <div className='about-page'>
         <div className="about-content">
@@ -172,13 +231,29 @@ export default function AboutUs() {
               <h1> Contact </h1>
             </div>
             <div className="about-section-content">
+              <div className="contact-form">
                 <label htmlFor="title">Title</label>
-                <input type="text" name='title' />
-                <label htmlFor="email">email</label>
-                <input type="email" name="email"/>
+                <input type="text" name='title' onChange={handleContactFormOnChange} ref={inputRef}/>
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email"  onChange={handleContactFormOnChange} placeholder='janedoe@gmail.com' ref={emailRef}/>
+                {
+                  contactError
+                  ?
+                  <p className='error'>Enter a valid email</p>
+                  :
+                  <></>
+                }
                 <label htmlFor="detail">Body</label>
-                <textarea name="detail" id="" cols="30" rows="10"></textarea>
-                <button> send </button>
+                <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body'  onChange={handleContactFormOnChange} ref={textAreaRef}/>
+                <button className='contact-button' onClick={submitContact}> send </button>
+                {contactIsSubmitted 
+                ? 
+                <div className='contact-submitted'>
+                  <p> Form is submitted!!! </p>
+                </div>
+                :
+                <></>}
+              </div>
             </div>
           </div>
         </div>
