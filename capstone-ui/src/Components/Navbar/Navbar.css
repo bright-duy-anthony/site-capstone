@@ -177,13 +177,16 @@ hamburger button styling
     cursor: pointer;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 830px) {
     .navbar .logo-container, .navbar .logo-container .logo {
-        max-height: 56px;
+        max-height: 40px !important;
     }
     .navbar .logo-container .logo{
-        height: 15px;
+        max-height: 40px !important;
     }
+}
+
+@media (max-width: 420px) {
     .navbar {
         position: fixed;
         top: 0px;
