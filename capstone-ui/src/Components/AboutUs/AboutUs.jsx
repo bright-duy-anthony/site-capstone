@@ -1,6 +1,8 @@
 import * as React from 'react'
+import axios from "axios"
 import './AboutUs.css'
 import Bright from '../../Assets/Bright.JPG'
+import Anthony from '../../Assets/Anthony.jpg'
 import {Link} from 'react-router-dom'
 import TextareaAutosize from 'react-autosize-textarea';
 
@@ -35,6 +37,9 @@ export default function AboutUs() {
   }
 
   // form is submitted state variable
+  const [contactIsSubmitting, setContactIsSubmitting] = React.useState(false)
+
+  // form is submitted state variable
   const [contactIsSubmitted, setContactIsSubmitted] = React.useState(false)
 
   // form error state variable
@@ -46,18 +51,27 @@ export default function AboutUs() {
 
   // handle contact form on submit function
   const submitContact = () => {
-    setContactForm({
-      title : "",
-      email : "",
-      body : ""
-    })
+    
+    setContactIsSubmitted(false)
+    setContactIsSubmitting(true)
 
     // if email error do not submit
     if(contactError || contactForm.email === ""){
       return 
     }
 
-    setContactIsSubmitted(true)
+    //call to form submit service that emails us the form information
+    axios.defaults.headers.post['Content-Type'] = 'application/json';
+    axios.post('https://formsubmit.co/ajax/anthony.martin.site@codepath.org', {
+    title: contactForm.title,
+    email: contactForm.email,
+    body: contactForm.body,
+})
+    .then(response => {
+      setContactIsSubmitting(false); 
+      setContactIsSubmitted(true);})
+    .catch(error => setContactError(error));
+
     inputRef.current.value = ""
     emailRef.current.value = ""
     textAreaRef.current.value = ""
@@ -103,7 +117,7 @@ export default function AboutUs() {
                       Name: Nnaemeka Odedo
                     </p>
                   <p className='occupation'>
-                    Occupation: student at GSU
+                    Occupation: student at Georgia State University
                   </p>
                   <p className="age">
                     age: 19
@@ -111,7 +125,7 @@ export default function AboutUs() {
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
                     <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
-                      <i class="fa-brands fa-instagram"></i>
+                      <i className="fa-brands fa-instagram"></i>
                     </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
@@ -125,7 +139,7 @@ export default function AboutUs() {
                 {/* Anthony */}
                 <div className="person-card">
                 <div className="card-img">
-                    <img src="" alt="" />
+                    <img src={Anthony} alt="" />
                   </div>
                   <div className="card-text">
                   <p className='name'>
@@ -135,19 +149,17 @@ export default function AboutUs() {
                     Occupation: student at Florida International University
                   </p>
                   <p className="age">
-                    age: 21
+                    age: 20
                   </p>
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
-                    <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
-                      <i class="fa-brands fa-instagram"></i>
+                    <a href="https://www.instagram.com/anthonymxrtin/?hl=en" target="_blank">
+                      <i className="fa-brands fa-instagram"></i>
                     </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
-                  <p className="about">Fill Section. I like to dance butt naked
-                  in front of my mirror, take rides with my friends on the weekends
-                  and I love meeting new people. I wanna build a machine as an 
-                  engineer in the future.
+                  <p className="about">
+                  I am a computer engineering student interested in expanding my knowledge of backend web development. In my free time, I enjoy working on side projects as well as going out with friends. In the future, I hope to work for a large automotive company as a backend web developer.
 
                   </p>
                   </div>
@@ -170,7 +182,7 @@ export default function AboutUs() {
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
                     <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
-                    <i class="fa-brands fa-instagram"></i>
+                    <i className="fa-brands fa-instagram"></i>
                     </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
@@ -227,11 +239,11 @@ export default function AboutUs() {
               <h1> Contact </h1>
             </div>
             <div className="about-section-content">
-              <div className="contact-form">
+              <div className="contact-form" >
                 <label htmlFor="title">Title</label>
-                <input type="text" name='title' onChange={handleContactFormOnChange} ref={inputRef}/>
+                <input type="text" name='title' value={contactForm.title} onChange={handleContactFormOnChange} ref={inputRef}/>
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email"  onChange={handleContactFormOnChange} placeholder='janedoe@gmail.com' ref={emailRef}/>
+                <input type="email" name="email" value={contactForm.email} onChange={handleContactFormOnChange} placeholder='janedoe@gmail.com' ref={emailRef}/>
                 {
                   contactError
                   ?
@@ -240,15 +252,18 @@ export default function AboutUs() {
                   <></>
                 }
                 <label htmlFor="detail">Body</label>
-                <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body'  onChange={handleContactFormOnChange} ref={textAreaRef}/>
+                <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body' value={contactForm.body}  onChange={handleContactFormOnChange} ref={textAreaRef}/>
                 <button className='contact-button' onClick={submitContact}> send </button>
+                {contactIsSubmitting 
+                && 
+                <div className='contact-submitted'>
+                  <p> Submitting... </p>
+                </div>}
                 {contactIsSubmitted 
-                ? 
+                && 
                 <div className='contact-submitted'>
                   <p> Form is submitted!!! </p>
-                </div>
-                :
-                <></>}
+                </div>}
               </div>
             </div>
           </div>
