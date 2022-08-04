@@ -125,7 +125,7 @@ function RecipeMain(recipe){
         
               // get the number of saved recipes
         if(true){
-          
+
           const {data, error} = await apiClient.totalSaved(recipeId)
           if(data)setTotalSaved(data.num_total)
         }
@@ -133,7 +133,7 @@ function RecipeMain(recipe){
 
       if(user?.email){
       getSavedRecipes()}
-    }, [isSaved, setError,recipeId, totalSaved])
+    }, [isSaved, setError, recipeId, totalSaved])
 
   const date= new Date(recipe?.recipe?.recipeadd_date?.split("T")[0]).toDateString().split(" ")
   const nth = function(d) {
