@@ -1,10 +1,15 @@
 .sidebar-closed{
+    width: 0px;
+}
+
+.sidebar-closed > .sidebar-open-contents {
     display: none;
 }
 
 .sidebar-open{
     position: fixed;
     top:56px;
+    
     left: 0px;
     width: 250px;
     background-color: #fff;
@@ -14,6 +19,7 @@
     min-height: calc(100vh - 56px); /* 56px represents the height of the Navbar */
     max-width: 190px;
     overflow-y: scroll;
+    transition: 0.5s;
 }
 
 /* Declarations for sidebar open styles */
