@@ -147,6 +147,13 @@
     text-decoration: none;
 }
 
+@media (max-width: 775px) {
+    .recipe-card {
+        max-width: calc(16/ 9.5 * var(--recipe-img-height)) !important;
+    }
+    
+}
+
 @media (max-width: 420px) {
     .recipe-card {
         display: flex;
