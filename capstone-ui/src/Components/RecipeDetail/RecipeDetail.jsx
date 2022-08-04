@@ -52,6 +52,7 @@ function RecipeMain(recipe){
   const [savedrecipe, setSavedRecipe] = React.useState([])
   const [isSaved, setIsSaved] = React.useState(false)
   const [longDescription, setLongDescription] = React.useState(false)
+  const [totalSaved, setTotalSaved] = React.useState(0)
   const {recipeId} = useParams()
   const {setError, user, showLoginForm, showMealPlannerAddForm, setPopupType, setDeleteAction, showPopup} = useAuthNavContext()
 
@@ -121,11 +122,18 @@ function RecipeMain(recipe){
                   setIsSaved(true);
                 }
               })
+        
+              // get the number of saved recipes
+        if(true){
+          
+          const {data, error} = await apiClient.totalSaved(recipeId)
+          if(data)setTotalSaved(data.num_total)
+        }
       }
 
       if(user?.email){
       getSavedRecipes()}
-    }, [isSaved, setError,recipeId])
+    }, [isSaved, setError,recipeId, totalSaved])
 
   const date= new Date(recipe?.recipe?.recipeadd_date?.split("T")[0]).toDateString().split(" ")
   const nth = function(d) {
@@ -155,6 +163,12 @@ function RecipeMain(recipe){
             <h3> Recipe by <Link style={{textDecoration: 'none'}} to={`/profile/${recipe?.recipe?.user_id}`}>{recipe.recipe.username}</Link></h3>
             <h4> Categories : {recipe.recipe.category?.charAt(0).toUpperCase()+ recipe.recipe.category?.slice(1)} </h4>
             <h4> Calories: {recipe.recipe.calories} kcal</h4>
+            { totalSaved > 0 
+            ? 
+            <h6> <i> {totalSaved} users have saved this recipe </i></h6>
+            :
+            <></>
+            }
             <div>
               <p>{presentableDescription()[0]+ ". "}{longDescription? null : <span className='dots' onClick={() => setLongDescription(e => !e)}>(See More)</span>}{longDescription ? <span className='more'>{presentableDescription()[1]} </span> : null}{longDescription? <span className='dots' onClick={() => setLongDescription(e => !e)}>(See Less)</span> : null}</p>
             </div>

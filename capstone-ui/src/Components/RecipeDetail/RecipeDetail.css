@@ -60,12 +60,13 @@
     box-shadow: rgb(255 127 80 / 89%) 0px 3px 8px;
 }
 
-.recipe-detail-text{
-    flex: 2.5;
+.recipe-detail-text {
+    flex: 2.5 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-left: 13px;
+    gap: 8px;
 }
 
 .recipe-detail-text > *{
@@ -244,4 +245,8 @@ Styling for Ipad
         border: 7px solid black;
         box-shadow: rgb(255 127 80 / 89%) 0px 1px 5px;
     }
+}
+
+.recipe-detail-text > h6 {
+    color: gray;
 }

@@ -24,11 +24,21 @@ router.get("/:recipeId", async function (req, res, next) {
   }
 })
 
+router.get("/amountSaved/:recipeId", async function (req, res, next) {
+  try {
+      const recipeId = req.params.recipeId
+      const nums = await Recipe.getNumSaved(recipeId)
+      if(!nums) return res.status(200).json({num_total : 0})
+      return res.status(200).json( nums )
+  } catch (err) {
+      next(err)
+  }
+})
+
 router.post("/create",security.requireAuthenticatedUser, async (req, res, next) => {
   try {
     // take the users email and password and create a new user in our database
     const recipe = await Recipe.createRecipe(req.body);
-  
     return res.status(200).json({ recipe });
   } catch (err) {
     next(err);
