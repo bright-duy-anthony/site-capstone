@@ -44,8 +44,23 @@
 }
 
 .popup-container .register {
-    min-height: 30rem;
-    width: 30rem;
+    min-height: 24rem;
+    width: 20rem;
+}
+
+.popup-container .register .text-wrapper p, .popup-container .register .text-wrapper span {
+    color: var(--primary-color);
+}
+.popup-container .register .text-wrapper  {
+    justify-content: space-between;
+    min-height: 65px;
+}
+.popup-container .register #label-file-upload {
+    width: 100%;
+}
+
+.popup-container .register .split input {
+    width: 87%;
 }
 
 .popup-container .popup-card h1 {
@@ -57,6 +72,20 @@
     position: absolute;
     right: 3%;
     top: 2%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    z-index: 100006;
+    color: white;
+}
+
+.popup-container .back-btn {
+    position: absolute;
+    left: 5%;
+    top: 3%;
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
@@ -106,7 +135,10 @@
 
 .popup-card .form .input-row input[type="date"] {
     font-size: 12px;
-    color:rgb(89, 89, 89);
+    color: rgb(89, 89, 89);
+    padding: 2px;
+    transform: translateY(-4%);
+    margin-right: 30px;
 }
 
 .popup-card .form .input-row {
@@ -226,4 +258,11 @@
 .suggestion-grid{
     color: black;
     z-index: 300;
+}
+
+
+@media screen and (max-width: 500px) {
+    .confirm {
+        width: 20rem;
+    }
 }
