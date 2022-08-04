@@ -163,6 +163,19 @@ class Recipe{
         return results.rows
     }
     
+    static async getNumSaved(recipeId) {
+        // get recipe array
+
+        const query = `
+        SELECT COUNT(recipe_id) as num_total
+        FROM saved_recipes 
+        WHERE recipe_id=$1 
+        GROUP BY recipe_id;
+        `
+        const results = await db.query(query, [recipeId])
+        return results.rows[0]
+    }
+
 }
 
 module.exports=Recipe

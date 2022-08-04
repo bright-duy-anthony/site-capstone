@@ -172,6 +172,10 @@ class ApiClient {
         return await this.request({ endpoint: `review/${recipe_id}`, method: `GET`})
     }
 
+    async totalSaved(recipe_id) {
+        return await this.request({ endpoint: `recipe/amountSaved/${recipe_id}`, method: `GET`})
+    }
+
     async editReview(review_id, comment) {
         return await this.request({ endpoint: `review/update`, method: `PUT`, data:{review_id: review_id, comment: comment}})
     }
@@ -181,5 +185,5 @@ class ApiClient {
     }
 }
 
-// export default new ApiClient(DEVELOPMENT_API_URL)
-export default new ApiClient(PRODUCTION_API_URL)
+export default new ApiClient(DEVELOPMENT_API_URL)
+// export default new ApiClient(PRODUCTION_API_URL)
