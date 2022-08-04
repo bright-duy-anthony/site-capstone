@@ -164,16 +164,19 @@ class User{
             first_name,
             last_name,
             username,
-            dob
+            dob,
+            image_url,
+            description
         )
-        VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING id, email, password, first_name, last_name, username, dob, created_at;
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING id, email, password, first_name, last_name, username, dob, created_at, image_url, description;
     `,
-    [lowercasedEmail, hashedPassword, credentials.firstName, credentials.lastName, credentials.userName.toLowerCase(), credentials.dob]
+    [lowercasedEmail, hashedPassword, credentials.firstName, credentials.lastName, credentials.userName.toLowerCase(), credentials.dob, credentials.image_url, credentials.description]
     )
 
         //return the user
         const user=result.rows[0]
+        
         return User.makePublicUser(user)
 
         

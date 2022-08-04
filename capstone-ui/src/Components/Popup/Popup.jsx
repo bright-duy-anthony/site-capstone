@@ -5,10 +5,11 @@ import apiClient from "../../Services/ApiClient"
 import { useNavigate, useParams } from 'react-router-dom'
 import MealPlannerSuggestion from '../MealPlannerSuggestion/MealPlannerSuggestion'
 import PhoneInput from 'react-phone-input-2'
+import DragDropFile from '../DragDrop/DragDrop'
 
 export default function Popup(){
     //needed functions from useAuthNavContext
-    const {popupType, closePopup, showRegisterForm, showLoginForm, error, setError, setUser, isLoading, setIsLoading, user, setMealPlan, getMealPlan, deleteAction, setDeleteAction, deleteAllGetMealPlan, isPwChanged, setIsPwChanged, displaySuggestion, setDisplaySuggestion, setReviews} = useAuthNavContext()
+    const {popupType, closePopup, showRegisterForm, showLoginForm, error, setError, setUser, isLoading, setIsLoading, user, setMealPlan, getMealPlan, deleteAction, setDeleteAction, deleteAllGetMealPlan, isPwChanged, setIsPwChanged, displaySuggestion, setDisplaySuggestion, setReviews, file, setFile} = useAuthNavContext()
 
     const [form, setForm] = React.useState({
         email: "",
@@ -18,7 +19,8 @@ export default function Popup(){
         dob: "",
         last_name: "",
         first_name: "",
-
+        image_url: file?.fileByteA ? file?.fileByteA : null,
+        bio: ""
     })
 
     //Recipe ID for Recipe Details page
@@ -45,13 +47,16 @@ export default function Popup(){
         message:``
     })
 
+    //use state for register pages
+    const [page, setPage] = React.useState("page1")
+
     const navigate = useNavigate()
 
     //Function that handles the value of form for login/signup
     const handleOnFormInputChange = (event) => {
         //prevent the events default behaviour  
         event.preventDefault()
-
+        
         if (event.target.name === "email") {
             if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
                 setError((e) => ({ ...e, email: "Please enter a valid email." }))
@@ -159,7 +164,9 @@ export default function Popup(){
                 email: form.email,
                 dob: form.dob,
                 password: form.password,
-                userName: form.username
+                userName: form.username,
+                bio:form.bio,
+                image_url: file?.fileByteA ? file?.fileByteA : "",
             })
             dataUse = data
             errorUse = error
@@ -225,6 +232,7 @@ export default function Popup(){
         if (dataUse?.user) {
             apiClient.setToken(dataUse.token)
             setUser(dataUse?.user)
+            reset()
         }
         setIsLoading(false)
 
@@ -296,10 +304,27 @@ export default function Popup(){
         setIsLoading(false)
     }
 
+    //reset form and errors function 
+    const reset = () => {
+        setFile({})
+        setForm((f) => ({ ...f, ["first_name"]: "" }))
+        setForm((f) => ({ ...f, ["last_name"]: "" }))
+        setForm((f) => ({ ...f, ["email"]: "" }))
+        setForm((f) => ({ ...f, ["password"]: "" }))
+        setForm((f) => ({ ...f, ["confirm_password"]: "" }))
+        setForm((f) => ({ ...f, ["username"]: "" }))
+        setForm((f) => ({ ...f, ["dob"]: "" }))
+        setForm((f) => ({ ...f, ["bio"]: "" }))
+        setError((e) => ({ ...e, form: null }))
+        setError((e) => ({ ...e, email: null }))
+        setError((e) => ({ ...e, confirm_password: null }))
+    }
+
     //useEffect to close the popup form when user are logged in
     React.useEffect(() => {
         if (user?.email && popupType!=="MealPlanner" && popupType!=="MealPlannerAdd" && popupType!=="ShoppingList") {
             closePopup()
+            reset()
         }
     })
 
@@ -327,51 +352,73 @@ export default function Popup(){
             </div>
         </div>
     } else if (popupType === "Register") {
-        formHTML = 
-        <div className="form">
-            <div className="input-field split">
-                <div className="input-row">
-                    <label htmlFor="First Name">First Name</label>
-                    <input type="text" name="first_name" placeholder="first"  onChange={handleOnFormInputChange}/>
-                </div>
-                <div className="input-row">
-                    <label htmlFor="Last Name">Last Name</label>
-                    <input type="text" name="last_name" placeholder="last"  onChange={handleOnFormInputChange}/>
-                </div>
+        if (page === "page1") {
+        formHTML = <div className="form">
+        <div className="input-field split">
+            <div className="input-row">
+                <label htmlFor="First Name">First Name</label>
+                <input type="text" name="first_name" value={form.first_name} placeholder="first"  onChange={handleOnFormInputChange}/>
             </div>
+            <div className="input-row">
+                <label htmlFor="Last Name">Last Name</label>
+                <input type="text" name="last_name" value={form.last_name} placeholder="last"  onChange={handleOnFormInputChange}/>
+            </div>
+        </div>
+        <div className="input-field">
+            <label htmlFor="Email">Email</label>
+            <input type="email" name="email" value={form.email} placeholder="user@gmail.com"  onChange={handleOnFormInputChange}/>
+        </div>
+        <div className="input-field">
+            <label htmlFor="Password">Password</label>
+            <input type="password" name="password" value={form.password} placeholder="password" onChange={handleOnFormInputChange}/>
+        </div>
+        <div className="input-field">
+            <label htmlFor="Confirm Password">Confirm Password</label>
+            <input type="password" name="confirm_password" value={form.confirm_password} placeholder="password" onChange={handleOnFormInputChange}/>
+        </div>
+        {(error?.confirm_password !== null && form.confirm_password !== "")  ? <span className="error">Password do not match.</span> : null}
+        <div className="footer">
+            <p>Already have an account? <br/> Sign in&nbsp;
+                <span className='here-btn' onClick={(e) => {e.stopPropagation();setError((e) => ({ ...e, form: null }));setError((e) => ({ ...e, email: null }));showLoginForm(); }}>here</span>.
+            </p>
+            <button disabled={form.first_name === "" || form.last_name === "" || form.password === "" || form.confirm_password === "" || form.email === "" || error?.email || error?.confirm_password} className="footer-btn" onClick={() => setPage("page2")}>
+                NEXT
+            </button>
+        </div>
+    </div>
+    } else {
+        formHTML = <div className="form">
             <div className="input-field split">
                 <div className="input-row">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" placeholder="username"  onChange={handleOnFormInputChange}/>
+                    <label htmlFor="username">Username *</label>
+                    <input type="text" name="username" placeholder="username" value={form.username} onChange={handleOnFormInputChange}/>
                 </div>
                 <div className="input-row">
-                    <label htmlFor="DOB">DOB</label>
+                    <label htmlFor="DOB">DOB *</label>
                     <input type="date" name="dob" className='calendar' onChange={handleOnFormInputChange}/>
                 </div>
 
             </div>
             <div className="input-field">
-                <label htmlFor="Email">Email</label>
-                <input type="email" name="email" placeholder="user@gmail.com"  onChange={handleOnFormInputChange}/>
+                {/* Using drag and drop upload file instead of image URL */}
+                <label htmlFor="Image">Image (Optional)</label>
+                <DragDropFile />
+
             </div>
             <div className="input-field">
-                <label htmlFor="Password">Password</label>
-                <input type="password" name="password" placeholder="password" onChange={handleOnFormInputChange}/>
+                <label htmlFor="description">Bio (Optional)</label>
+                <input type="text" name="description" placeholder="Bio" value={form.bio} onChange={handleOnFormInputChange}/>
             </div>
-            <div className="input-field">
-                <label htmlFor="Confirm Password">Confirm Password</label>
-                <input type="password" name="confirm_password" placeholder="password" onChange={handleOnFormInputChange}/>
-            </div>
-            {(error?.confirm_password !== null && form.confirm_password !== "")  ? <span className="error">Password do not match.</span> : null}
             <div className="footer">
                 <p>Already have an account? <br/> Sign in&nbsp;
                     <span className='here-btn' onClick={(e) => {e.stopPropagation();setError((e) => ({ ...e, form: null }));setError((e) => ({ ...e, email: null }));showLoginForm(); }}>here</span>.
                 </p>
-                <button className="footer-btn" disabled={isLoading} onClick={handleOnSubmit}>
+                <button className="footer-btn" disabled={isLoading || form.dob === "" || form.username === "" } onClick={handleOnSubmit}>
                     {isLoading ? "Loading..." : "SIGNUP"}
                 </button>
             </div>
-        </div>
+        </div>}
+        
     }else if(popupType==="MealPlanner"){
         formHTML = 
         <div className="form">
@@ -466,7 +513,8 @@ export default function Popup(){
     return(
         <div className="popup-container" >
             <div className={`popup-card ${popupType.toLowerCase()}`} onClick={(e) => e.stopPropagation()}>
-                <button className="close-btn" onClick={(e) => {e.stopPropagation();closePopup();}}>&times;</button>
+                <button className="close-btn" onClick={(e) => {e.stopPropagation();closePopup(); reset();}}>&times;</button>
+                {popupType === "Register" && page !== "page1" ? <div className="back-btn" onClick={(e) => {e.stopPropagation();setPage("page1");}}><i class="fa-regular fa-circle-left"></i></div> : null}
                 {popupType === "Login" || popupType === "Register" || popupType === "Confirm" ? <h1>{popupType}</h1> : null}
                 {popupType === "MealPlanner" || popupType === "MealPlannerAdd" ? <h1>Add to Meal Plan</h1> : null}
                 {(error?.form) ? <span className="error">{error?.form}</span> : null}
