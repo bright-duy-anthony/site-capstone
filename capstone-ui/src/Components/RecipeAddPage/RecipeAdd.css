@@ -265,3 +265,15 @@ Styling for Ipad
         width: 100px;
     }
 }
+
+@media only screen and (max-width: 430px) {
+    .recipe-add .form .input-field input[name="name"] {
+        width: 95%;
+    }
+    .recipe-add .form .input-field select[name="category"] {
+        width: 100%;
+    }
+    .recipe-add .form .input-field input[name="calories"] {
+        width: 95%;
+    }
+}

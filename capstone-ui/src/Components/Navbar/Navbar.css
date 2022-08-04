@@ -332,4 +332,8 @@ hamburger button styling
     .round:hover i{
         filter: none;
     }
+
+    .nav-btns #login{
+        transform: translateX(28%)
+    }
 }

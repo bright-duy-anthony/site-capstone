@@ -103,7 +103,7 @@ export default function SearchResultGrid({recipeList, displayFilter, handleOnSet
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               pageCount={pageCount}
-              previousLabel="< previous"
+              previousLabel="< prev"
               renderOnZeroPageCount={null}
               containerClassName="pagination"
               pageClassName='page-number'
