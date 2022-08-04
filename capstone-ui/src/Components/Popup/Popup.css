@@ -259,3 +259,10 @@
     color: black;
     z-index: 300;
 }
+
+
+@media screen and (max-width: 500px) {
+    .confirm {
+        width: 20rem;
+    }
+}

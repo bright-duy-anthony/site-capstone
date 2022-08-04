@@ -256,6 +256,7 @@ export default function Popup(){
         await apiClient.logoutUser()
         setUser({})
         setError(null)
+        reset()
         navigate("/")
     }
 
@@ -324,7 +325,6 @@ export default function Popup(){
     React.useEffect(() => {
         if (user?.email && popupType!=="MealPlanner" && popupType!=="MealPlannerAdd" && popupType!=="ShoppingList") {
             closePopup()
-            reset()
         }
     })
 
@@ -514,7 +514,7 @@ export default function Popup(){
         <div className="popup-container" >
             <div className={`popup-card ${popupType.toLowerCase()}`} onClick={(e) => e.stopPropagation()}>
                 <button className="close-btn" onClick={(e) => {e.stopPropagation();closePopup(); reset();}}>&times;</button>
-                {popupType === "Register" && page !== "page1" ? <div className="back-btn" onClick={(e) => {e.stopPropagation();setPage("page1");}}><i class="fa-regular fa-circle-left"></i></div> : null}
+                {popupType === "Register" && page !== "page1" ? <div className="back-btn" onClick={(e) => {e.stopPropagation();setPage("page1");}}><i className="fa-regular fa-circle-left"></i></div> : null}
                 {popupType === "Login" || popupType === "Register" || popupType === "Confirm" ? <h1>{popupType}</h1> : null}
                 {popupType === "MealPlanner" || popupType === "MealPlannerAdd" ? <h1>Add to Meal Plan</h1> : null}
                 {(error?.form) ? <span className="error">{error?.form}</span> : null}
