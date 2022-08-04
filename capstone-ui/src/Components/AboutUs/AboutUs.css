@@ -146,6 +146,11 @@ p.about-title-about{
     color: #e1306c;
 }
 
+.social-handles{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
 @media (max-width: 420px) {
     .about-content {
         border: 1px solid var(--border-color);

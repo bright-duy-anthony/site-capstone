@@ -127,6 +127,12 @@ export default function AboutUs() {
                     <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
                       <i className="fa-brands fa-instagram"></i>
                     </a>
+                    <a href="https://github.com/brightodedo" target="_blank">
+                      <i className="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nnaemeka-odedo-b67297230/" target="_blank">
+                      <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
                   <p className="about">I am a college student who currently has a passion for 
