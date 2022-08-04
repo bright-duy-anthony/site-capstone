@@ -11,7 +11,7 @@ export default function Sidebar(){
     const [isDropped, setIsDropped] = React.useState(false) 
 
     // setResultsType from the auth context 
-    const {setResultsType, visibleSidebar} = useAuthNavContext()
+    const {setResultsType, visibleSidebar, setVisibleSidebar} = useAuthNavContext()
 
     // Function that handles category dropdown
     const handleCategoryDropdown = (event) =>{
@@ -42,7 +42,7 @@ export default function Sidebar(){
 
         // navigate to the search link
         navigate('/usersearch')
-        console.log(5)
+        setVisibleSidebar(false)
         return
        }
 
@@ -51,6 +51,7 @@ export default function Sidebar(){
 
         // navigate to the search link
         navigate('/search')
+        setVisibleSidebar(false)
     }
 
     return(
@@ -87,7 +88,7 @@ export default function Sidebar(){
                 </div>
                 
                 {/* Liked Recipe button */}
-                <Link to='/about'>
+                <Link to='/about' onClick={() => setVisibleSidebar(false)}>
                     <img src="https://w7.pngwing.com/pngs/69/977/png-transparent-retail-shop-fitting-metal-about-us-icon-cdr-retail-eps-thumbnail.png" alt="liked recipes" /> 
                     <p> About us </p>
                 </Link>

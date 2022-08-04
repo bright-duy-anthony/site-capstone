@@ -9,7 +9,7 @@ export default function CategoryDropdown() {
 
     //get the current category,
     // setResultsType from the auth context 
-    const {setCurrentCategory, setResultsType} = useAuthNavContext()
+    const {setCurrentCategory, setResultsType, setVisibleSidebar} = useAuthNavContext()
 
     //create the navigate object/function
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ export default function CategoryDropdown() {
 
         //set the resultsType to "sidebar"
         setResultsType("sidebar")
-        
+        setVisibleSidebar(false)
         //navigage to the results page
         navigate('/search')
     }

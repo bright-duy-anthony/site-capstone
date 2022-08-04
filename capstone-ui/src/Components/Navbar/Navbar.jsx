@@ -149,11 +149,17 @@ export default function Navbar(){
     
     return(
         <nav className='navbar'>
-            <div className='sidebar-toggle'>
+            {/* <div className='sidebar-toggle'>
                 <button id='sidebar' onClick={handleSidebarOnClick}>
                     <i className="fa-solid fa-bars nav-btn"></i>
                 </button>
-            </div>
+            </div> */}
+            <div className={`sidebar-toggle ${!visibleSidebar ? `closed` : `open`}`} onClick={handleSidebarOnClick}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             <div className="logo-container">
                 <Link className="nav-link" to="/">
                     <img src="https://cdn.iconscout.com/icon/free/png-256/chef-1828025-1551570.png" alt="Logo img" className='logo' />
