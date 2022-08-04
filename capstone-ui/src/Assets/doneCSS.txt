@@ -11,6 +11,7 @@ UserSearchGrid.css
 UserSearchCard.css
 AboutUs.css
 UserProfilePage.css
+UserDetailPage.css
 
 @media (max-width: 420px) {
     

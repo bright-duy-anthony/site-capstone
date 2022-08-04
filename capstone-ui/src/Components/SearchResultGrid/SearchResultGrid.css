@@ -125,7 +125,7 @@ h3.no-match {
 }
 
 @media (max-width: 420px) {
-    ul.pagination{
+    ul.pagination {
         max-width: 350px;
         list-style-type: none;
         display: flex;
@@ -136,6 +136,7 @@ h3.no-match {
         height: 35px;
         align-items: center;
         flex-wrap: wrap;
+        padding-left: 0px;
     }
     .results-grid {
         display: flex;
