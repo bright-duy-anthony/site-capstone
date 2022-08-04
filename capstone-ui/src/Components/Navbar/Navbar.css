@@ -303,7 +303,6 @@ hamburger button styling
 @media (max-width: 420px) {
     .navbar {
         position: fixed;
-        top: 5px;
         min-width: 100vw;
         max-height: 56px;
     }
