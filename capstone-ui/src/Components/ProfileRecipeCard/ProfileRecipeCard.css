@@ -162,11 +162,12 @@
         position: relative;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         min-width: calc(16/9 * var(--recipe-search-img-phone-height));
         min-height: var(--recipe-search-img-phone-height);
         max-width: calc(16/9 * var(--recipe-search-img-phone-height));
         max-height: var(--recipe-search-img-phone-height);
+        align-self: center;
     }
 
     .result-information {
