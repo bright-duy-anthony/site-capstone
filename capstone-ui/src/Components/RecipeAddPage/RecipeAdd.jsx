@@ -28,7 +28,7 @@ const handleOnInputChange = (event) => {
 }
   const handleOnSubmit = async () => {
     setIsLoading(true)
-    setError((e) => ({ ...e, form: null }))
+    setError((e) => ({ ...e, recipeAddForm: null }))
 
     var errorUse
     const {data,error} = await apiClient.recipeCreate({
@@ -43,7 +43,7 @@ const handleOnInputChange = (event) => {
         
     })
     errorUse = error
-    if (errorUse) setError((e) => ({ ...e, form: errorUse }))
+    if (errorUse) setError((e) => ({ ...e, recipeAddForm: errorUse }))
 
     if(data){
         navigate(`/recipe/${data?.recipe?.id}`)
@@ -167,7 +167,7 @@ const removeInstruction = (index) => {
 
   return (
     <div className='recipe-container'> 
-    {(error?.form) ? <span className="error">{error?.form}</span> : null}
+    {(error?.recipeAddForm) ? <span className="error">{error?.recipeAddForm}</span> : null}
     <div className='recipe-add'>
       <div className="form">
             <div className="input-field name">
