@@ -150,6 +150,112 @@
     filter: invert(1);
 }
 
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  {
+    .search-user-card {
+        box-shadow: 0px 0px 0px black;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        margin: 0px 10px;
+        background-position: 0 100%;
+        display: flex;
+        padding: 2px;
+        gap: 20px;
+        overflow: hidden;
+        background: none;
+        background-size: 0%;
+        animation: slideInLeft .7s ease-in;
+        flex-wrap: wrap;
+    }
+
+    /* Hover effects for the search results card */
+.search-user-card:hover {
+    box-shadow: none;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin: 0px 10px;
+}
+
+.search-user-card:hover .result-image img{
+    animation: imageParentHover .37s ease;
+    box-shadow: 0px 0px 0px black;
+    border-radius: 10%;
+    border: 0px;
+    transform: scale(1.02);
+}
+
+.search-user-card:hover .default{
+    filter: none;
+}
+
+.search-user-card:hover .result-user-name h1 {
+    color: var(--primary-color);
+}
+
+.search-user-card:hover .result-user-numbers p {
+    color: black;
+}
+
+.search-user-card:hover .result-contains p{
+    color: white;
+    margin: 0px;
+    line-height: 19px;
+    font-size: 12px;
+}
+}
+
+@media (max-width: 830px) {
+    .search-user-card {
+        box-shadow: 0px 0px 0px black;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        margin: 0px 10px;
+        background-position: 0 100%;
+        display: flex;
+        padding: 2px;
+        gap: 20px;
+        overflow: hidden;
+        background: none;
+        background-size: 0%;
+        animation: slideInLeft .7s ease-in;
+        flex-wrap: wrap;
+    }
+
+    /* Hover effects for the search results card */
+.search-user-card:hover {
+    box-shadow: none;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin: 0px 10px;
+}
+
+.search-user-card:hover .result-image img{
+    animation: imageParentHover .37s ease;
+    box-shadow: 0px 0px 0px black;
+    border-radius: 10%;
+    border: 0px;
+    transform: scale(1.02);
+}
+
+.search-user-card:hover .default{
+    filter: none;
+}
+
+.search-user-card:hover .result-user-name h1 {
+    color: var(--primary-color);
+}
+
+.search-user-card:hover .result-user-numbers p {
+    color: black;
+}
+
+.search-user-card:hover .result-contains p{
+    color: white;
+    margin: 0px;
+    line-height: 19px;
+    font-size: 12px;
+}
+}
+
 @media (max-width: 420px) {
     .search-user-card {
         box-shadow: 0px 0px 0px black;
