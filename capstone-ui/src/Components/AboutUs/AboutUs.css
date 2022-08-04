@@ -42,7 +42,7 @@
 }
 
 .person-card{
-    max-width: calc(16/ 9 * var(--recipe-img-height));
+    max-width: calc(16/ 9.3 * var(--recipe-img-height));
     display: flex;
     flex-direction: column;
     border: 1px solid lightgray;
