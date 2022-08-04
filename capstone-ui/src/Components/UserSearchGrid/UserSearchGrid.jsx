@@ -62,7 +62,7 @@ export default function UserSearchGrid({usersList}) {
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               pageCount={pageCount}
-              previousLabel="< previous"
+              previousLabel="< prev"
               renderOnZeroPageCount={null}
               containerClassName="pagination"
               pageClassName='page-number'

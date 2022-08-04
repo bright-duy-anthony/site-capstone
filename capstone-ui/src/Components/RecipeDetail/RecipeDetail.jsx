@@ -125,7 +125,7 @@ function RecipeMain(recipe){
         
               // get the number of saved recipes
         if(true){
-          
+
           const {data, error} = await apiClient.totalSaved(recipeId)
           if(data)setTotalSaved(data.num_total)
         }
@@ -133,7 +133,7 @@ function RecipeMain(recipe){
 
       if(user?.email){
       getSavedRecipes()}
-    }, [isSaved, setError,recipeId, totalSaved])
+    }, [isSaved, setError, recipeId, totalSaved])
 
   const date= new Date(recipe?.recipe?.recipeadd_date?.split("T")[0]).toDateString().split(" ")
   const nth = function(d) {
@@ -198,6 +198,27 @@ function RecipeStep(recipe){
   //Remove all duplicate ingredients from the ingredients array
   const uniqueIngredients = [...new Set(ingredients)];
 
+    // ingredients display state variable
+    const [displayIngredients, setDisplayIngredients] = React.useState(false)
+
+    // show ingredients on click
+    const showIngredientsOnClick = () => {
+      // toggle the displayIngredients state variable
+      if(displayIngredients) setDisplayIngredients(false)
+      else setDisplayIngredients(true)
+    }
+
+
+    // ingredients display state variable
+    const [displayDirections, setDisplayDirections] = React.useState(false)
+
+    // show ingredients on click
+    const showDirectionsOnClick = () => {
+      // toggle the displayIngredients state variable
+      if(displayDirections) setDisplayDirections(false)
+      else setDisplayDirections(true)
+    }
+
   return(
     <div className="recipe-detail-step">
 
@@ -205,7 +226,8 @@ function RecipeStep(recipe){
       <div className="recipe-detail-ingredients">
         <p className="ingredients-header"> Ingredients </p>
         <hr />
-        <ul className='ingredients-list'>
+        <p className="dropdown" onClick={showIngredientsOnClick}> {!displayIngredients ? "Show Instructions" : "Hide Instructions"} </p>
+          <ul className={`ingredients-list ${displayIngredients ? "" : "disappear"}`}>
           {uniqueIngredients?.map((element,idx) => {
             if (element !== "" && element !== " ") {
               return <li key={idx}>{element}</li>;
@@ -219,7 +241,8 @@ function RecipeStep(recipe){
       <div className="recipe-detail-directions">
         <p className="directions-header"> Directions </p>
         <hr />
-        <ol className='directions-list'>
+        <p className="dropdown" onClick={showDirectionsOnClick}> {!displayDirections ? "Show Directions" : "Hide Directions"} </p>
+        <ol className={`directions-list ${displayDirections ? "" : "disappear"}`}>
         {recipe?.recipe?.instructions?.split('. '||'! ').map((element,idx) => {
           if(element!==""){
               return <li key={idx}>{element}</li>;
@@ -291,6 +314,7 @@ function RecipeReview({recipeId}) {
   }
 
 
+
   return(
     <div className="recipe-review-main" id="review-scroll">
       <h1>Reviews</h1>
@@ -307,8 +331,13 @@ function RecipeReview({recipeId}) {
         </div>
         <div className='add-review-text'>
           {/* Conditional rendering for when the user is logged in/ not logged in */}
-          {user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 20}}/>
-          : <span>You must be <span className="links" onClick={showLoginForm}>logged in</span> to leave a review. Don't have an account? Sign up <span className="links" onClick={showRegisterForm}>here!</span></span>
+          {window.innerWidth > 420 
+          ?
+            user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 20}}/>
+            : <span>You must be <span className="links" onClick={showLoginForm}>logged in</span> to leave a review. Don't have an account? Sign up <span className="links" onClick={showRegisterForm}>here!</span></span>
+          :
+          user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 10, height:10}}/>
+            : <span>You must be <span className="links" onClick={showLoginForm}>logged in</span> to leave a review. Don't have an account? Sign up <span className="links" onClick={showRegisterForm}>here!</span></span>
           }
           <hr />
           {user?.email ? <button disabled={!user?.email} onClick={handleOnPost}>{isLoading ? "Loading" : "Post"}</button> : null}

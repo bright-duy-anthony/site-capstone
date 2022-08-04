@@ -136,20 +136,28 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
         {/* profile image */}
         <div className="profile-detail-image">
           <img src={profile.image_url ? profile.image_url : "https://toppng.com/uploads/preview/circled-user-icon-user-pro-icon-11553397069rpnu1bqqup.png"} alt="profile " className={profile.image_url ? "" : "default"}/>
+          {window.innerWidth <= 430 ? <div className="profile-details">
+            <div className="profile-detail-name">
+              <h1>{profile.username}</h1>
+            </div>
+
+            <div className="profile-total-recipes">
+              <p>{profile.total_recipes} recipes created</p>
+            </div>
+          </div> : null}
         </div>
 
         {/* profile text info */}
         <div className="profile-detail-text">
           
-          {/* the profile owners name */}
+          {window.innerWidth > 600 ?
           <div className="profile-detail-name">
             <h1>{profile.username}</h1>
-          </div>
+          </div> : null}
 
-          {/* the total number of recipes */}
-          <div className="profile-total-recipes">
+          {window.innerWidth > 600 ? <div className="profile-total-recipes">
             <p>{profile.total_recipes} recipes created</p>
-          </div>
+          </div> : null}
 
           {/* the profile description */}
           <div className="profile-detail-biography">
@@ -289,7 +297,7 @@ function RecipeDisplay({showLoginForm, setError, profileId, displayType, transit
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={3}
                 pageCount={pageCount}
-                previousLabel="< previous"
+                previousLabel="< prev"
                 renderOnZeroPageCount={null}
                 containerClassName="pagination"
                 pageClassName='page-number'

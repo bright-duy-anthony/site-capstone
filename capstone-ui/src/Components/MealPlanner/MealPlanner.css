@@ -194,3 +194,9 @@ Shopping list styling
         min-width: 146px !important;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .shopping-list .list {
+        grid-template-columns: 1fr 1fr 1fr !important;
+    }
+}
