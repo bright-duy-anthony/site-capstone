@@ -331,7 +331,7 @@ function RecipeReview({recipeId}) {
         </div>
         <div className='add-review-text'>
           {/* Conditional rendering for when the user is logged in/ not logged in */}
-          {console.log(window.innerWidth) > 420 
+          {window.innerWidth > 420 
           ?
             user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 20}}/>
             : <span>You must be <span className="links" onClick={showLoginForm}>logged in</span> to leave a review. Don't have an account? Sign up <span className="links" onClick={showRegisterForm}>here!</span></span>

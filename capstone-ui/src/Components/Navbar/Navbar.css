@@ -303,25 +303,27 @@ hamburger button styling
 @media (max-width: 420px) {
     .navbar {
         position: fixed;
-        top: 0px;
-        background-color: #fff;
-        border-bottom: 1px solid #f0f1f2;
-        min-height: 112px;
+        top: 5px;
         min-width: 100vw;
-        max-height: 112px;
-        z-index: 10000;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-around;
+        max-height: 56px;
+    }
+    .sidebar-toggle {
+        transform: translateX(20%);
     }
 
+    .logo-container {
+        display: none;
+    }
     .search-container {
         background-color: lightgray;
         border-radius: 12px;
         display: flex;
-        position: fixed;
         top: 56px;
+        transform: translateX(10%);
+    }
+
+    .search-container input {
+        width: 140px !important;
     }
 
     .round:hover{

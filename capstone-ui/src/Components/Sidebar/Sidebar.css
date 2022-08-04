@@ -145,3 +145,16 @@
     align-items: flex-end;
     gap: 8px;
 }
+
+.sidebar-open-contents .logo-container {
+    display: flex;
+    align-self: center;
+    height: 45px !important;
+    width: 45px !important;
+    cursor: pointer;
+}
+
+.sidebar-open-contents .logo-container img {
+    height: 45px !important;
+    width: 45px !important;
+}
