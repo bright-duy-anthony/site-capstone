@@ -123,3 +123,25 @@ li.page-number.page-current-border {
 h3.no-match {
     margin: 0px 0px 11px 0px;
 }
+
+@media (max-width: 420px) {
+    ul.pagination {
+        max-width: 350px;
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+        cursor: pointer;
+        align-self: center;
+        height: 35px;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-left: 0px;
+    }
+    .results-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 50px;
+    }
+}

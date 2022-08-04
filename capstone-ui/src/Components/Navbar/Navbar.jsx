@@ -41,13 +41,17 @@ export default function Navbar(){
         content: "Meal Planner",
         offset: [0, 20],
     });
+    tippy('#sidebar', {
+        content: "Toggle sidebar",
+        offset: [0, 20],
+    });
 
     // extract the navigate function
     const navigate = useNavigate()
 
     //useState variable for tracking User search text.
     const [searchField, setSearchField] = React.useState('')
-    const {showLoginForm, showRegisterForm, setSearchWord, setResultsType, user, setUser, setError} = useAuthNavContext()
+    const {showLoginForm, showRegisterForm, setSearchWord, setResultsType, user, setUser, setError, visibleSidebar, setVisibleSidebar} = useAuthNavContext()
 
     //Function that handles the value of searchField depending on the value of User's input text
     const handleSearchOnChange = (event) => {
@@ -134,9 +138,22 @@ export default function Navbar(){
         setSearchPlaceholder("Search for user")
     }
 
+    // searchbar placeholder 
     const [searchPlaceholder, setSearchPlaceholder] = React.useState("Search for recipe")
+
+    // toggle sidebar on click function
+    const handleSidebarOnClick = () => {
+        if(visibleSidebar)setVisibleSidebar(false)
+        else setVisibleSidebar(true)
+    }
+    
     return(
         <nav className='navbar'>
+            <div className='sidebar-toggle'>
+                <button id='sidebar' onClick={handleSidebarOnClick}>
+                    <i className="fa-solid fa-bars nav-btn"></i>
+                </button>
+            </div>
             <div className="logo-container">
                 <Link className="nav-link" to="/">
                     <img src="https://cdn.iconscout.com/icon/free/png-256/chef-1828025-1551570.png" alt="Logo img" className='logo' />

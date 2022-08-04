@@ -77,3 +77,112 @@
 .profile-recipe-card .result-name h1{
     margin: 0px;
 }
+
+@media (max-width: 420px) {
+    .profile-recipe-card {
+        margin: 0px 10px;
+        border-bottom: 1.4px solid var(--border-color);
+        overflow: hidden;
+        background: transparent;
+        background-size: 0%;
+        background-position: 0%;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        border: 1px solid var(--border-color);
+        border-radius: 5%;
+    }
+
+    .profile-recipe-card.even {
+        margin: 0px 10px;
+        border-bottom: 1.4px solid var(--border-color);
+        overflow: hidden;
+        background: transparent;
+        background-size: 0%;
+        background-position: 0%;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        border: 1px solid var(--border-color);
+        border-radius: 5%;
+    }
+
+    .profile-recipe-card:hover {
+        box-shadow: none;
+        border-radius: 0px;
+        margin: 0px 10px;
+    }
+    
+    .profile-recipe-card:hover .result-image img{
+        box-shadow: none;
+        border-radius: 5%;
+        border: 0px;
+        transform: scale(1.02);
+    }
+    
+    .profile-recipe-card:hover .default{
+        filter: none;
+    }
+    
+    .profile-recipe-card:hover .result-profile-name p{
+        color: black;
+    }
+    
+    .profile-recipecard:hover .result-name h1{
+        color: var(--primary-color);
+    }
+    
+    .profile-recipe-card:hover .result-contains p{
+        color: black;
+        margin: 0px;
+        line-height: 19px;
+        font-size: 12px;
+    }
+    
+    .profile-recipe:hover .result-creation-date p{
+        color: lightgray;
+        margin: 0px;
+        line-height: 21px;
+        font-size: 14px;
+    }
+
+    .result-image img {
+        max-width: calc(16/9 * var(--recipe-search-img-phone-height));
+        width: calc(16/9 * var(--recipe-search-img-phone-height));
+        height: var(--recipe-search-img-phone-height);
+        max-height: var(--recipe-search-img-phone-height);
+        border: none;
+        transition: .37s ease-in;
+        object-fit: cover;
+        border-radius: 5%;
+        box-shadow: none;
+    }
+
+    .result-image {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-width: calc(16/9 * var(--recipe-search-img-phone-height));
+        min-height: var(--recipe-search-img-phone-height);
+        max-width: calc(16/9 * var(--recipe-search-img-phone-height));
+        max-height: var(--recipe-search-img-phone-height);
+    }
+
+    .result-information {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 12px;
+    }
+
+    .result-profile-img img {
+        position: relative;
+        border: 3px solid aliceblue;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        z-index: 3;
+        background-color: rgba(0, 0, 0, 0.072);
+    }
+}
