@@ -25,23 +25,7 @@ export default function Navbar(){
         content: "Search",
         offset: [0, 20],
     });
-    tippy('#profile', {
-        content: "Profile",
-        offset: [0, 20],
-    });
-    tippy('#profile', {
-        content: "Profile",
-        offset: [0, 20],
-    });
-    tippy('#addrecipe', {
-        content: "Add Recipe",
-        offset: [0, 20],
-    });
-    tippy('#mealplanner', {
-        content: "Meal Planner",
-        offset: [0, 20],
-    });
-    tippy('#sidebar', {
+    tippy('#sidebar-toggle', {
         content: "Toggle sidebar",
         offset: [0, 20],
     });
@@ -51,6 +35,7 @@ export default function Navbar(){
 
     //useState variable for tracking User search text.
     const [searchField, setSearchField] = React.useState('')
+    const [isOpen, setIsOpen] = React.useState(false)
     const {showLoginForm, showRegisterForm, setSearchWord, setResultsType, user, setUser, setError, visibleSidebar, setVisibleSidebar} = useAuthNavContext()
 
     //Function that handles the value of searchField depending on the value of User's input text
@@ -146,14 +131,29 @@ export default function Navbar(){
         if(visibleSidebar)setVisibleSidebar(false)
         else setVisibleSidebar(true)
     }
+
+    const handleSettingClick = () => {
+        if (!isOpen) {
+            document.querySelector(".settings").style.transform = "translateY(38%)";
+            document.querySelector(".user-options").style.height = "100%";
+            document.querySelector(".one").style.display = "flex";
+            document.querySelector(".two").style.display = "flex";
+            document.querySelector(".three").style.display = "flex";
+            document.querySelector(".four").style.display = "flex";
+            setIsOpen(true)
+        } else {
+            document.querySelector(".settings").style.transform = "none";
+            document.querySelector(".user-options").style.height = "0";
+            document.querySelector(".one").style.display = "none";
+            document.querySelector(".two").style.display = "none";
+            document.querySelector(".three").style.display = "none";
+            document.querySelector(".four").style.display = "none";
+            setIsOpen(false)
+        }
+    }
     
     return(
         <nav className='navbar'>
-            {/* <div className='sidebar-toggle'>
-                <button id='sidebar' onClick={handleSidebarOnClick}>
-                    <i className="fa-solid fa-bars nav-btn"></i>
-                </button>
-            </div> */}
             <div className={`sidebar-toggle ${!visibleSidebar ? `closed` : `open`}`} onClick={handleSidebarOnClick}>
                     <span></span>
                     <span></span>
@@ -181,18 +181,24 @@ export default function Navbar(){
             <div className="nav-btns">
                     {user?.email ? null : <img id="login" src="https://img.icons8.com/ios-glyphs/344/login-rounded-right--v1.png" alt="temp icon" className='nav-btn' onClick={showLoginForm}/>}
                     {user?.email ? null : <img id="register" src="https://static.thenounproject.com/png/6478-200.png" alt="temp icon" className='nav-btn' onClick={showRegisterForm}/>}
-                    <Link to="profile"> 
-                        {user?.email ?<img id="profile" src="https://icons-for-free.com/iconfiles/png/512/person+user+icon-1320166085409390336.png" alt="temp icon" className='nav-btn' /> : null}
-                    </Link>
-                    <Link to="/recipe/create">
-                    {user?.email ?<img id="addrecipe" src="https://static.thenounproject.com/png/1001670-200.png" alt="temp icon" className='nav-btn'/> : null}
-                    </Link>
-                    <Link to="/mealplanner">
-                    {user?.email ?<img id="mealplanner" src="https://cdn-icons-png.flaticon.com/512/2843/2843614.png" alt="temp icon" className='nav-btn'/> : null}
-                    </Link>
-                    {user?.email ?<img id="logout" src="https://www.iconpacks.net/icons/2/free-exit-logout-icon-2857-thumb.png" alt="temp icon" className='nav-btn' onClick={handleLogout}/> : null}
-                    
+                    {user?.email ? <div className="settings">
+                        <img id="profile" src="https://icons-for-free.com/iconfiles/png/512/person+user+icon-1320166085409390336.png" alt="temp icon" className='nav-btn' onClick={handleSettingClick}/>
+                        <div className="user-options">
+                            <Link to="/profile">
+                                <div className="option one" onClick={handleSettingClick}>Profile</div>
+                            </Link>
+                            <Link to="/recipe/create">
+                                <div className="option two" onClick={handleSettingClick}>Add Recipe</div>    
+                            </Link>
+                            <Link to="/mealplanner">
+                                <div className="option three" onClick={handleSettingClick}>Meal Plan</div>
+                            </Link>
+                            <div className="option four" onClick={handleLogout}>Logout</div>
+                        </div>
+                    </div> : null}
+
             </div>
+            
         </nav>
     )
 }

@@ -63,10 +63,10 @@ export default function Sidebar(){
             <div className="sidebar-open-contents">
 
                 {/* The Categories button  To be changed to a drop down*/}
-                <button>
+                <button onClick={handleCategoryDropdown}>
                     <img src="https://cdn-icons-png.flaticon.com/512/4743/4743041.png" alt="categories" />  
                     <p> Categories </p>
-                    <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="dropdown" id="category-dropdown" className={isDropped ? 'drop' : ''} onClick={handleCategoryDropdown}/>
+                    <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="dropdown" id="category-dropdown" className={isDropped ? 'drop' : ''}/>
                 </button>
 
 
