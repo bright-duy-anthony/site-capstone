@@ -409,3 +409,12 @@ Styling for phone
         border-radius: 50%;
     }
 }
+
+@media (max-width: 600px) {
+    .recipe-container {
+        margin: 10px !important;
+    }
+    .recipe-container .recipe-add {
+        padding: 5px !important;
+    }
+}
