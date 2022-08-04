@@ -1,0 +1,10 @@
+.usersearchpage > .results-container {
+    margin: 60px 60px 0px 60px;
+}
+
+
+@media (max-width: 420px) {
+    .usersearchpage > .results-container {
+        margin: 30px 30px 0px 30px;
+    }
+}

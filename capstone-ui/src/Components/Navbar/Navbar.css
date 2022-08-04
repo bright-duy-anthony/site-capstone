@@ -94,3 +94,48 @@
         transform: rotateZ(360deg) scale(0);
     }
 }
+
+.sidebar-toggle button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+@media (max-width: 420px) {
+    .navbar .logo-container, .navbar .logo-container .logo {
+        max-height: 56px;
+    }
+    .navbar .logo-container .logo{
+        height: 15px;
+    }
+    .navbar {
+        position: fixed;
+        top: 0px;
+        background-color: #fff;
+        border-bottom: 1px solid #f0f1f2;
+        min-height: 112px;
+        min-width: 100vw;
+        max-height: 112px;
+        z-index: 10000;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
+
+    .search-container {
+        background-color: lightgray;
+        border-radius: 12px;
+        display: flex;
+        position: fixed;
+        top: 56px;
+    }
+
+    .round:hover{
+        background-color: transparent;
+    }
+    
+    .round:hover i{
+        filter: none;
+    }
+}

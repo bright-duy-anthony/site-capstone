@@ -1,19 +1,9 @@
 .sidebar-closed{
-    position: -webkit-sticky;
-    position: sticky;
-    top: 56px;
-    left: 0px;
-    width: 72px;
-    background-color: #fff;
-    border-right: 1px solid #f0f1f2;
-    z-index: 10000;
-    max-height: calc(100vh - 56px); /* 56px represents the height of the Navbar */
-    min-height: calc(100vh - 56px); /* 56px represents the height of the Navbar */
-    min-width: 65px;
+    display: none;
 }
 
 .sidebar-open{
-    position: sticky;
+    position: fixed;
     top:56px;
     left: 0px;
     width: 250px;
@@ -25,82 +15,6 @@
     max-width: 190px;
     overflow-y: scroll;
 }
-
-.sidebar-closed-contents{
-    margin: 5px;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 27px;
-}
-
-.sidebar-closed-contents *:hover{
-    background-color: rgba(255,255,255,.1);
-}
-
-.sidebar-closed-contents button{
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    outline: none;
-    border: 0px;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    gap: 8px;
-    padding: 0px;
-}
-.sidebar-closed-contents a{
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    outline: none;
-    border: 0px;
-    flex-direction: row;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-    align-items: flex-end;
-    gap: 8px;
-}
-
-.sidebar-closed-contents .toppy{
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    outline: none;
-    border: 0px;
-    flex-direction: row;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-    align-items: flex-end;
-    gap: 8px;
-}
-
-.sidebar-closed-contents button img{
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-}
-
-.sidebar-closed-contents a img{
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-}
-
-.sidebar-closed-contents .toppy img{
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-}
-
-.sidebar-closed-contents button img.sidebar-collapse{
-    transform: rotateZ(180deg);
-}
-
 
 /* Declarations for sidebar open styles */
 

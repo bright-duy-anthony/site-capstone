@@ -1,0 +1,16 @@
+navbar.css
+LandingPage.css
+sidebar.css
+RecipeGrid.css
+RecipeCard.css
+ResultPage.css
+App.css
+SearchResultGrid.css
+SearchResultCard.css
+UserSearchGrid.css
+UserSearchCard.css
+AboutUs.css
+
+@media (max-width: 420px) {
+    
+}

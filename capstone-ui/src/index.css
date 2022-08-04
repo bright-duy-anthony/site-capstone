@@ -23,6 +23,9 @@ code {
   --recipe-img-height: 169px;
   --recipe-search-img-height : 200px;
   --border-color : #f0f1f2;
+
+  --recipe-search-img-phone-height : 150px;
+  --recipe-img-phone-height: 100px;
   /* Continue adding variables below here */
 }
 

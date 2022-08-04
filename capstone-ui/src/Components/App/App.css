@@ -25,3 +25,14 @@
   max-width: 100%;
   width: 100%;
 }
+
+@media (max-width: 420px) {
+  .app-body{
+    position: relative;
+    top: 112px;
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    width: 100%;
+  }
+}

@@ -35,3 +35,7 @@
     border-radius: 50%;
     box-shadow: 0px 0px 2px var(--primary-color);
 }
+
+@media (max-width: 420px) {
+    
+}

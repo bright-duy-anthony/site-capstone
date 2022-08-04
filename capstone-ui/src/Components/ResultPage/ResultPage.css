@@ -17,3 +17,11 @@
     margin: 0px;
     padding: auto;
 }
+
+@media (max-width: 420px) {
+    .result-page {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+}
