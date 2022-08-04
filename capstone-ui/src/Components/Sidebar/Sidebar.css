@@ -33,6 +33,7 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 27px;
+    margin-top: 1rem;
 }
 
 .sidebar-open-contents *:hover{
