@@ -216,7 +216,7 @@ React.useEffect(() => {
                 <div className="ingredient-list">
                     {
                         form.ingredients.map((ingredient, idx) => {
-                            if(idx === form.ingredients.length-1){
+                            if(idx === form.ingredients.length-1 && idx !== 0 ){
                                 return(
                                     <div className='ingredient-cap' key={idx}>
                                         <input type="text" name="ingredients" value={ingredient} onChange={(event) => handleIngredient(event, idx)} onKeyDown={handleKeyDownIngredients} ref={currIngredient} autoFocus/>
@@ -248,7 +248,7 @@ React.useEffect(() => {
                 <div className="instruction-list">
                     {
                         form.instructions.map((instruction, idx) => {
-                            if(idx === form.instructions.length-1){
+                            if(idx === form.instructions.length-1 && idx !== 0){
                                 return(
                                 <div className='instruction-cap' key={idx}>
                                     <input type="text" name="instructions" rows="6" value={instruction}  onChange={(event) => handleInstruction(event, idx)} onKeyDown={handleKeyDownInstruction} autoFocus/>
