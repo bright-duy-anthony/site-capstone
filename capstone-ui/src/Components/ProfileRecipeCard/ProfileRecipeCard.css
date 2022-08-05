@@ -78,7 +78,7 @@
     margin: 0px;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .profile-recipe-card {
         margin: 0px 10px;
         border-bottom: 1.4px solid var(--border-color);

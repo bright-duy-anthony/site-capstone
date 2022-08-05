@@ -3,7 +3,7 @@
 }
 
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .usersearchpage > .results-container {
         margin: 30px 30px 0px 30px;
     }

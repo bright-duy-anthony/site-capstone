@@ -151,7 +151,7 @@ p.about-title-about{
     gap: 5px;
     flex-wrap: wrap;
 }
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .about-content {
         border: 1px solid var(--border-color);
         box-shadow: 0px 0px 10px lightgray;

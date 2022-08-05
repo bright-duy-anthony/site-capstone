@@ -27,6 +27,9 @@ export default function ResultPage() {
   // Banner Content state variable
   const [bannerContent, setBannerContent] = React.useState("")
 
+   // page is loading state variable 
+   const [pageIsLoading, setPageIsLoading] = React.useState(false)
+
   // Onclick function to fiter the search result
   const handleOnSetFilter = (mealType) => {
     //This function sets the filter variable to a word, allowing us to filter the recipe list by meal type
@@ -55,13 +58,13 @@ export default function ResultPage() {
     if(resultsType.includes("searchbar")) {
       // display the filter button
       setDisplayFilter(true)
-      // Create the banner content
-      setBannerContent(`Search Result for ${searchWord}`)
 
       // If the searchword is empty, do nothing //Error checking 
       if(searchWord === "")  return
 
 
+      // set is loading before calling the api
+      setPageIsLoading(true)
       //Call the corresponding api request
       const {data, error} = await ApiClient.recipeSearch(searchWord.replace(/ /g, '%20'), filter.replace(/ /g, '%20'))
       // If there is an error send it to the console
@@ -69,13 +72,18 @@ export default function ResultPage() {
 
       //If there is data, set recipe list to it
       if(data) setRecipeList(data.result)
-      
+    
+      // set is loading after calling the api
+      setPageIsLoading(false)
     }
     else {
       setSearchWord("")
       if(resultsType === "sidebar"){
         //  Make filter options invisible when coming from sidebar
         setDisplayFilter(false)
+
+        // set is loading before calling the api
+      setPageIsLoading(true)
 
         //Call the corresponding api request
         const {data, error} = await ApiClient.recipeCategory(currCategory.replace(/ /g, '%20'))
@@ -85,13 +93,16 @@ export default function ResultPage() {
         //If there is data, set recipe list to it
         if(data) setRecipeList(data.result)
 
-        // Create the banner content
-        setBannerContent(`Available ${currCategory} Dishes`)
+        // set is loading after calling the api
+      setPageIsLoading(false)
       }
 
       if(resultsType === "recents"){
         //  Make filter options invisible when coming from sidebar
         setDisplayFilter(true)
+
+         // set is loading before calling the api
+      setPageIsLoading(true)
 
         //Call the corresponding api request
         const {data, error} = await ApiClient.recipeRecent()
@@ -100,6 +111,8 @@ export default function ResultPage() {
 
         //If there is data, set recipe list to it
         if(data) setRecipeList(data.result)
+        // set is loading after calling the api
+      setPageIsLoading(false)
         }
 
         
@@ -109,25 +122,14 @@ export default function ResultPage() {
     
   // run the above function
   run()
-    // Clear the filter state variable everytime the component is unmounted
-    return () => {
-      // handleOnSetFilter("")
-    }
   }, [resultsType, searchWord, currCategory, filter])
 
   
   return (
     <div className='result-page'>
 
-      {/* The main banner  */}
-      {/* <div className="result-header">
-        <h1 className="result-text">
-          {bannerContent}
-        </h1>
-      </div> */}
-
       {/* the div containing the result display*/}
-        <SearchResultGrid recipeList={recipeList} displayFilter={displayFilter} handleOnSetFilter={handleOnSetFilter} filter={filter}/>
+        <SearchResultGrid recipeList={recipeList} displayFilter={displayFilter} handleOnSetFilter={handleOnSetFilter} filter={filter} pageIsLoading={pageIsLoading}/>
         <Overlay />
     </div>
   )

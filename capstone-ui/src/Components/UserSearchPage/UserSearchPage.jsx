@@ -14,10 +14,15 @@ export default function UserSearchPage() {
   //get searchWord from the authNavContext
   const {searchWord, resultsType} = useAuthNavContext()
 
+  // page is loading state variable 
+  const [pageIsLoading, setPageIsLoading] = React.useState(false)
+
   React.useEffect(() => {
     async function run(){
       if(resultsType === "randomuser"){
 
+        // set is loading before calling the api
+        setPageIsLoading(true)
         //Call the corresponding api request
         const {data, error} = await ApiClient.getRandomUser()
         // If there is an error send it to the console
@@ -26,8 +31,14 @@ export default function UserSearchPage() {
         //If there is data, set recipe list to it
         if(data) setUsersList(data.result)
 
+        // set is loading after calling the api
+        setPageIsLoading(false)
         return
         }
+
+      // set is loading before calling the api
+      setPageIsLoading(true)
+
       //Call the corresponding api request
       const {data, error} = await ApiClient.userSearch(searchWord.replace(/ /g, '%20'))
 
@@ -36,6 +47,9 @@ export default function UserSearchPage() {
 
       //If there is data, set recipe list to it
       if(data) setUsersList(data.result)
+
+      // set is loading after calling the api
+      setPageIsLoading(false)
     }
 
     // run the above function
@@ -48,7 +62,7 @@ export default function UserSearchPage() {
     <div className='usersearchpage'>
       
       {/* the div containing the result display*/}
-        <UserSearchGrid usersList={usersList}/>
+        <UserSearchGrid usersList={usersList} pageIsLoading={pageIsLoading}/>
         <Overlay />
     </div>
   )

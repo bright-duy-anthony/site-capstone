@@ -59,7 +59,11 @@
     font-family: 'Oswald', sans-serif;
     border-radius: 1rem;
     width: 80%;
-  }
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    border: 3px solid var(--border-color);
+}
   
   .upload-button:hover {
     text-decoration-line: underline;

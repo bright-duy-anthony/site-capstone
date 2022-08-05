@@ -6,6 +6,7 @@ import { useAuthNavContext } from '../../Contexts/authNav'
 import ReactPaginate from 'react-paginate'
 import ApiClient from '../../Services/ApiClient'
 import ProfileRecipeCard from '../ProfileRecipeCard/ProfileRecipeCard'
+import Loading from '../Loading/Loading'
 
 export default function UserDetailPage() {
   // Get the user Id from the url parameter
@@ -206,12 +207,19 @@ function RecipeDisplay({showLoginForm, setError, profileId, displayType, transit
 
   const [profileRecipeList, setProfileRecipeList] = React.useState([])
 
+  // page is loading state variable 
+  const [pageIsLoading, setPageIsLoading] = React.useState(false)
+
   // React useeffect that gets all the profile owned or saved recipes 
   React.useEffect(() => {
     async function run(){
 
       // check the display type and call the appropriage backend 
       if(displayType === "Owned"){
+
+        // set is loading before calling the api
+        setPageIsLoading(true)
+
         //get the owned recipes 
         const {data, error} = await ApiClient.getProfileOwned(profileId)
 
@@ -224,8 +232,14 @@ function RecipeDisplay({showLoginForm, setError, profileId, displayType, transit
         if(error){
           setError(error)
         }
+
+        // set is loading after calling the api
+        setPageIsLoading(false)
       }
       if(displayType === "Saved"){
+
+        // set is loading before calling the api
+        setPageIsLoading(true)
         const {data, error} = await ApiClient.getProfileSaved(profileId)
 
         // if there is no error
@@ -236,6 +250,9 @@ function RecipeDisplay({showLoginForm, setError, profileId, displayType, transit
         if(error){
           setError(error)
         }
+
+        // set is loading after calling the api
+        setPageIsLoading(false)
       }
     }
 
@@ -265,13 +282,17 @@ function RecipeDisplay({showLoginForm, setError, profileId, displayType, transit
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % profileRecipeList.length;
     setItemOffset(newOffset);
+    setTransition(transition + 1)
   };
 
 
   return(
     <div className="profile-detail-recipe">
-      {
-        profileRecipeList.length == 0 
+      {pageIsLoading 
+      ?
+      <Loading />
+      :
+        profileRecipeList.length === 0 
         ?
         <div className='no-result'>
           <h1> No {displayType} Recipes </h1> 

@@ -341,7 +341,7 @@
 
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .search-result-card {
         margin: 0px 10px;
         border-bottom: 1.4px solid var(--border-color);
