@@ -89,10 +89,9 @@ class Recipe{
             throw new BadRequestError("No user_id provided")
         }
 
-        const query = `SELECT * FROM recipe WHERE user_id = $1`
+        const query = `SELECT * FROM recipe WHERE user_id = $1 LIMIT 50;`
 
         const results = await db.query(query, [user_id])
-        console.log(results.rows)
         return results.rows
     }
 
@@ -138,7 +137,8 @@ class Recipe{
                             users.id as user_id
                         FROM recipe reci 
                         JOIN users ON reci.user_id=users.id 
-                        WHERE user_id = $1;
+                        WHERE user_id = $1
+                        LIMIT 300;
         `
 
         const results = await db.query(query, [user_id])

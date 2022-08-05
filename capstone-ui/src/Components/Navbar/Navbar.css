@@ -336,4 +336,23 @@ hamburger button styling
     .nav-btns #login{
         transform: translateX(28%)
     }
+    .sidebar-toggle span {
+        width: 80% !important;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .search-container {
+        border-radius: 12px;
+        display: flex;
+        top: 56px;
+        transform: translateX(10px);
+    }
+    .search-container input {
+        width: 125px !important;
+    }
+
+    .nav-btns{
+        transform: translateX(-6%)
+    }
 }
