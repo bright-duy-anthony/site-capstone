@@ -15,7 +15,7 @@ CREATE TABLE users (
 
 CREATE TABLE recipe (
     id SERIAL PRIMARY KEY,
-    api_id INTEGER NOT NULL UNIQUE,
+    api_id INTEGER UNIQUE,
     name TEXT NOT NULL,
     user_id INTEGER NOT NULL,
     category TEXT NOT NULL,

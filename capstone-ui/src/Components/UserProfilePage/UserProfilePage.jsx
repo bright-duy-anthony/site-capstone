@@ -155,7 +155,7 @@ export default function UserProfilePage() {
         }
         setError((e) => ({ ...e, profile: null }))
         setError((e) => ({ ...e, passwordUpdate: null }))
-        
+        setIsLoading(true)
         if (infoDisplay === "form") {
           
           
@@ -212,6 +212,7 @@ export default function UserProfilePage() {
             setPasswordIsUpdating(false)
           }
         }
+        setIsLoading(false)
   }
 
   const handleOnCancel = async () => {
@@ -339,7 +340,7 @@ export default function UserProfilePage() {
     <div className='user-profile-container'>
         <div className="user-profile">
           <div className="left-profile">
-            {imageIsUpdating
+            {imageIsUpdating || isLoading
             ?
             <Loading />
             :
@@ -359,7 +360,7 @@ export default function UserProfilePage() {
             </div>
           </div>
           <div className="right-profile">
-              {passwordIsUpdating || detailsIsUpdating
+              {passwordIsUpdating || detailsIsUpdating || isLoading
               ?
               <Loading />
               :
@@ -378,7 +379,7 @@ export default function UserProfilePage() {
           <option name="Created">Created Recipes</option>
           <option name="Saved">Saved Recipes</option>
         </select>
-            { recipeIsFetching
+            { recipeIsFetching || isLoading
             ?
             <Loading />
             :
