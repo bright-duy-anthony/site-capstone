@@ -84,11 +84,11 @@ function RecipeMain(recipe){
           setError((e) => ({ ...e, recommended: error }))
           return
         }
-
-        // toggle fetch save
-        if(fetchSave)setFetchSave(false)
-          else setFetchSave(true)
     }
+
+    // toggle fetch save
+    if(fetchSave)setFetchSave(false)
+    else setFetchSave(true)
   }
 
     
@@ -137,7 +137,7 @@ function RecipeMain(recipe){
                 setSavedRecipe(data.savedrecipe)
               }
               setIsSaved(false)
-              data?.savedrecipe?.every( idx=> {
+              data?.savedrecipe?.every( idx => {
                 if(parseInt(idx.recipe_id)===parseInt(recipeId)){
                   setIsSaved(true);
                   return ;
