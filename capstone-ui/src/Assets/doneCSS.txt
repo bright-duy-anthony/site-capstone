@@ -15,6 +15,6 @@ UserDetailPage.css
 RecipeDetail.css
 RecipeDetail.jsx
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     
 }

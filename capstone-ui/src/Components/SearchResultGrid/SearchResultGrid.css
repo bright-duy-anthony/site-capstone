@@ -124,7 +124,7 @@ h3.no-match {
     margin: 0px 0px 11px 0px;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     ul.pagination {
         max-width: 350px;
         list-style-type: none;
