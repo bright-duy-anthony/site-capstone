@@ -35,12 +35,13 @@ export default function UserSearchPage() {
         setPageIsLoading(false)
         return
         }
-      //Call the corresponding api request
-      const {data, error} = await ApiClient.userSearch(searchWord.replace(/ /g, '%20'))
 
       // set is loading before calling the api
       setPageIsLoading(true)
-      
+
+      //Call the corresponding api request
+      const {data, error} = await ApiClient.userSearch(searchWord.replace(/ /g, '%20'))
+
       // If there is an error send it to the console
       if(error) console.error(error)
 
