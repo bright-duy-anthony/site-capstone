@@ -300,7 +300,7 @@ hamburger button styling
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .navbar {
         position: fixed;
         min-width: 100vw;
@@ -310,7 +310,7 @@ hamburger button styling
         transform: translateX(20%);
     }
 
-    .logo-container {
+    .navbar .logo-container, .logo-container .logo {
         display: none;
     }
     .search-container {

@@ -145,7 +145,7 @@
 }
 
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .profile-detail-main {
         display: flex;
         border: 1px solid var(--border-color);

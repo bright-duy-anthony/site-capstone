@@ -158,3 +158,10 @@
     height: 45px !important;
     width: 45px !important;
 }
+
+@media (max-width: 450px) {
+
+    .sidebar-open-contents .logo-container, .logo-container .logo {
+        display: flex;
+    }
+}

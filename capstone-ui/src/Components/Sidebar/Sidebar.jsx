@@ -61,11 +61,11 @@ export default function Sidebar(){
             
             {/* The div containing the various buttons to the various pages as a flex box */}
             <div className="sidebar-open-contents">
-                {window.innerWidth <= 450 ? <div className="logo-container" onClick={ () => setVisibleSidebar(false)}>
-                <Link className="nav-link" to="/">
-                    <img src="https://cdn.iconscout.com/icon/free/png-256/chef-1828025-1551570.png" alt="Logo img" className='logo' />
-                </Link>
-            </div> : null}
+                <div className="logo-container" onClick={ () => setVisibleSidebar(false)}>
+                    <Link className="nav-link" to="/">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/chef-1828025-1551570.png" alt="Logo img" className='logo' />
+                    </Link>
+                </div> 
                 {/* The Categories button  To be changed to a drop down*/}
                 <button onClick={handleCategoryDropdown}>
                     <img src="https://cdn-icons-png.flaticon.com/512/4743/4743041.png" alt="categories" />  

@@ -261,7 +261,7 @@ Styling for Ipad
 Styling for phone
 ---------------------------*/
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .recipe-detail-info {
         width: 100%;
         display: flex;

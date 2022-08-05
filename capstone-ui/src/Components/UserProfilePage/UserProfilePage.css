@@ -254,7 +254,7 @@ Slider styling
     align-self: flex-start;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .user-profile {
         display: flex;
         flex-direction: column;
@@ -304,4 +304,14 @@ Slider styling
         gap: 30px;
         overflow: scroll;
     }
+    .right-profile .split {
+        gap: 0;
+    }
+    .right-profile .input-row {
+        width: 48.5%;
+    }
+    .right-profile .input-row textarea {
+        width: 193%;
+    }
+    
 }
