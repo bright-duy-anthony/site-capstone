@@ -204,7 +204,7 @@ function RecipeMain(recipe){
         {/* Recipe Edit buttons */}
         <div className="recipe-edit-buttons">
           <button onClick={()=>{addPlan();}}> Add Plan </button>
-          {isSaved && user?.email ? <button onClick={()=>{saveRecipe()}}> Unsave </button> :<button onClick={()=>{saveRecipe()}}> Save </button>}
+          {(fetchSave || isSaved) && user?.email ? <button onClick={()=>{saveRecipe()}}> Unsave </button> :<button onClick={()=>{saveRecipe()}}> Save </button>}
           <a href="#review-scroll"><button> Reviews </button></a>
           {/* Recipe Delete button */}
           {recipe.recipe.user_id===user.id && <button onClick={deleteRecipe}> Delete </button>}      

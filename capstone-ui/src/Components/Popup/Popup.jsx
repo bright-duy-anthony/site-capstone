@@ -319,6 +319,7 @@ export default function Popup(){
         setError((e) => ({ ...e, form: null }))
         setError((e) => ({ ...e, email: null }))
         setError((e) => ({ ...e, confirm_password: null }))
+        setPage("page1")
     }
 
     //useEffect to close the popup form when user are logged in
@@ -407,7 +408,7 @@ export default function Popup(){
             </div>
             <div className="input-field">
                 <label htmlFor="description">Bio (Optional)</label>
-                <input type="text" name="description" placeholder="Bio" value={form.bio} onChange={handleOnFormInputChange}/>
+                <input type="text" name="bio" placeholder="Bio" value={form.bio} onChange={handleOnFormInputChange}/>
             </div>
             <div className="footer">
                 <p>Already have an account? <br/> Sign in&nbsp;
