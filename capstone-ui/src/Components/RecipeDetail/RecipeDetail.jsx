@@ -51,27 +51,46 @@ export default function RecipeDetail() {
 function RecipeMain(recipe){
   const [savedrecipe, setSavedRecipe] = React.useState([])
   const [isSaved, setIsSaved] = React.useState(false)
+
+  // The fetchsave state variable
+  // toggle this function between true and false any time the save button is clicked
+  const [fetchSave, setFetchSave] = React.useState(false)
+
+
   const [longDescription, setLongDescription] = React.useState(false)
   const [totalSaved, setTotalSaved] = React.useState(0)
   const {recipeId} = useParams()
   const {setError, user, showLoginForm, showMealPlannerAddForm, setPopupType, setDeleteAction, showPopup} = useAuthNavContext()
 
+  // function runs when either the save or not saved button is clicked
     const saveRecipe = async () => {
+
+      // Check if the user is not logged in and redirect them to the login form
       if(!user?.email){
         showLoginForm();
-        setError((e) => ({ ...e, form:"You need to be logged in!" }))}
+        setError((e) => ({ ...e, form:"You need to be logged in!" }))
+        return
+      }
       
+        // if the user is logged in call the api
       if(user?.email){
         const {data, error} = await apiClient.savedRecipe({
           user_id:user.id,
           recipe_id:recipeId
         })
-        if (error) setError((e) => ({ ...e, recommended: error }))
 
-        if(data?.savedrecipe==='Successfully Unsaved Recipe!'){
-          setIsSaved(false);
-        }}
+        // if the user did not save the recipe
+        if (error) {
+          setError((e) => ({ ...e, recommended: error }))
+          return
+        }
+
+        // toggle fetch save
+        if(fetchSave)setFetchSave(false)
+          else setFetchSave(true)
     }
+  }
+
     
 
     // handle when user wants to delete a recipe
@@ -117,23 +136,29 @@ function RecipeMain(recipe){
               if (data?.savedrecipe) {
                 setSavedRecipe(data.savedrecipe)
               }
-              data?.savedrecipe?.map((idx)=> {
+              setIsSaved(false)
+              data?.savedrecipe?.every( idx=> {
                 if(parseInt(idx.recipe_id)===parseInt(recipeId)){
                   setIsSaved(true);
+                  return ;
                 }
               })
-        
-              // get the number of saved recipes
+      }
+      const getTotalSaved = async () => {
+        // get the number of saved recipes
         if(true){
-
           const {data, error} = await apiClient.totalSaved(recipeId)
-          if(data)setTotalSaved(data.num_total)
-        }
+        if(data)setTotalSaved(data.num_total)
+       }
       }
 
-      if(user?.email){
-      getSavedRecipes()}
-    }, [isSaved, setError, recipeId, totalSaved])
+
+      // run the two commands beneath to get the status of saved and the total saved
+      getSavedRecipes()
+      getTotalSaved()
+      
+    }, [fetchSave])
+
 
   const date= new Date(recipe?.recipe?.recipeadd_date?.split("T")[0]).toDateString().split(" ")
   const nth = function(d) {
@@ -179,7 +204,7 @@ function RecipeMain(recipe){
         {/* Recipe Edit buttons */}
         <div className="recipe-edit-buttons">
           <button onClick={()=>{addPlan();}}> Add Plan </button>
-          {isSaved && user?.email ? <button onClick={()=>{saveRecipe(); setIsSaved(false)}}> Unsave </button> :<button onClick={()=>{saveRecipe();setIsSaved(true)}}> Save </button>}
+          {isSaved && user?.email ? <button onClick={()=>{saveRecipe()}}> Unsave </button> :<button onClick={()=>{saveRecipe()}}> Save </button>}
           <a href="#review-scroll"><button> Reviews </button></a>
           {/* Recipe Delete button */}
           {recipe.recipe.user_id===user.id && <button onClick={deleteRecipe}> Delete </button>}      
