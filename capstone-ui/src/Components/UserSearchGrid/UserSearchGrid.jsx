@@ -3,8 +3,9 @@ import './UserSearchGrid.css'
 import {useAuthNavContext} from '../../Contexts/authNav'
 import ReactPaginate from 'react-paginate'
 import UserSearchCard from '../UserSearchCard/UserSearchCard'
+import Loading from '../Loading/Loading'
 
-export default function UserSearchGrid({usersList}) {
+export default function UserSearchGrid({usersList, pageIsLoading}) {
 
     //get searchWord from the authNavContext
     const {searchWord, transition, setTransition} = useAuthNavContext()
@@ -42,11 +43,17 @@ export default function UserSearchGrid({usersList}) {
   return (
     <div className='results-container'>
 
-        {usersList.length == 0 ? 
-            <div className="no-result">
+        {pageIsLoading
+        ?
+        <Loading />
+        :
+        usersList.length === 0
+        ? 
+          <div className="no-result">
             <h3> Couldn't Find Any User Matching <br /> <p>{`${searchWord}`}?</p></h3>
-            </div> :
-            <></>
+          </div> 
+        :
+          <></>
         }
         <div className="results-grid">
             {currentItems.map((people, idx) => {

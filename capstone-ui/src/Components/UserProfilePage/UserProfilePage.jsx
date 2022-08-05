@@ -9,6 +9,7 @@ import apiClient from "../../Services/ApiClient"
 import Overlay from '../Overlay/Overlay'
 import { useNavigate } from 'react-router-dom';
 import DragDropFile from '../DragDrop/DragDrop';
+import Loading from '../Loading/Loading';
 
 
 export default function UserProfilePage() {
@@ -62,6 +63,7 @@ export default function UserProfilePage() {
 
   //useState for displaying saved or created recipe
   const [recipesDisplay, setRecipesDisplay] = React.useState("Created")
+  
 
   const [form, setForm] = React.useState({
     first_name: "",
@@ -77,22 +79,42 @@ export default function UserProfilePage() {
   // useState for when the user is updating their profile img
   const [isChangingImg, setIsChangingImg] = React.useState(false)
 
+  // fetch recipe is loading state variable 
+  const [recipeIsFetching, setRecipeIsFetching] = React.useState(false)
+
+  // image is updating state variable 
+  const [imageIsUpdating, setImageIsUpdating] = React.useState(false)
+
+  // password is updating state variable 
+  const [passwordIsUpdating, setPasswordIsUpdating] = React.useState(false)
+
+  // details is updating state variable 
+  const [detailsIsUpdating, setDetailsIsUpdating] = React.useState(false)
+
   React.useEffect(()=>{
     
     const getSavedRecipes = async () => {
+      // set get recipe is fetching before calling the api
+      setRecipeIsFetching(true)
       const {data, error} = await apiClient.getUsersSavedRecipes()
             if (error) setError((e) => ({ ...e, savedRecipe: error }))
             if (data?.savedrecipe) {
                 setSavedRecipes(data.savedrecipe)
             }
+      // set get recipe is fetching after calling the api
+      setRecipeIsFetching(false)
     }
 
     const getCreatedRecipes = async () => {
+      // set get recipe is fetching before calling the api
+      setRecipeIsFetching(true)
       const {data, error} = await apiClient.getUserCreatedRecipes()
             if (error) setError((e) => ({ ...e, createdRecipe: error }))
             if (data?.recipe) {
                 setCreatedRecipes(data.recipe)
             }
+      // set get recipe is fetching after calling the api
+      setRecipeIsFetching(false)
     }
 
     getSavedRecipes()
@@ -136,6 +158,9 @@ export default function UserProfilePage() {
         
         if (infoDisplay === "form") {
           
+          
+          // set the details is updating before the api call
+          setDetailsIsUpdating(true)
           const {data, error} = await apiClient.updateProfile({
               first_name: form.first_name,
               last_name: form.last_name,
@@ -148,6 +173,9 @@ export default function UserProfilePage() {
             setError((e) => ({ ...e, profile: error }))
             
             setIsLoading(false)
+
+            // set the details is updating after the api call
+            setDetailsIsUpdating(false)
             return
             }
           if (data?.user) {
@@ -155,12 +183,16 @@ export default function UserProfilePage() {
               setUser(data?.user)
               setIsEditing(false)
               setInfoDisplay("profile")
+              // set the details is updating after the api call
+              setDetailsIsUpdating(false)
           }
         } else if (infoDisplay === "password") {
           if (form.old_password === "" || form.new_password === "") {
             setError((e) => ({ ...e, passwordUpdate: "Please fill in all of the fields!" }))
             return
           }
+          // set the password is updating before the api call
+          setPasswordIsUpdating(true)
           const {data, error} = await apiClient.updatePassword({
               old_password: form.old_password,
               new_password: form.new_password,
@@ -169,11 +201,15 @@ export default function UserProfilePage() {
           if (error) {
             setError((e) => ({ ...e, passwordUpdate: error }))
             setIsLoading(false)
+            // set the password is updating after the api call
+            setPasswordIsUpdating(false)
             return
             }
           if (data?.user) {
             setIsEditing(false)
             setInfoDisplay("profile")
+            // set the password is updating after the api call
+            setPasswordIsUpdating(false)
           }
         }
   }
@@ -269,6 +305,8 @@ export default function UserProfilePage() {
   //function for update picture button onclick 
   const handleUpdateImg = async () => {
     if (isChangingImg && file?.file && file?.fileByteA) {
+      // set image is updating before api call
+      setImageIsUpdating(true)
       const {data, error} = await apiClient.updateProfile({
           image_file: file?.fileByteA,
           user_id: user.id,
@@ -276,14 +314,19 @@ export default function UserProfilePage() {
       if (error) {
         setError((e) => ({ ...e, profile: error }))
         setIsLoading(false)
+        // set image is updating after api call
+      setImageIsUpdating(false)
         return
         }
       if (data?.user) {
         setUser(data.user)
+      // set image is updating after api call
+      setImageIsUpdating(false)
       }
       setFile({})
     }
     setIsChangingImg((e) => !e)
+    
   }
 
   const handleOnDelete = () => {
@@ -296,9 +339,14 @@ export default function UserProfilePage() {
     <div className='user-profile-container'>
         <div className="user-profile">
           <div className="left-profile">
-            <div className="profile-img">
+            {imageIsUpdating
+            ?
+            <Loading />
+            :
+              <div className="profile-img">
               {user.imageUrl ? <img src={user.imageUrl} alt='profile img' /> : <img src="https://toppng.com/uploads/preview/circled-user-icon-user-pro-icon-11553397069rpnu1bqqup.png" alt='profile img' /> }
             </div>
+            }
             { isChangingImg ? <DragDropFile /> : null }
             <button className="change-img" onClick={handleUpdateImg}>
               {isChangingImg ? "Save": "Update Picture"}
@@ -311,7 +359,11 @@ export default function UserProfilePage() {
             </div>
           </div>
           <div className="right-profile">
-              {elToDisplay}
+              {passwordIsUpdating || detailsIsUpdating
+              ?
+              <Loading />
+              :
+              elToDisplay}
             <div className="setting-btns">
                 {isEditing ? null :<button id="password" onClick={handleOnBtnClick}>Change Password</button>}
                 {isEditing ? null : <button id="form" onClick={handleOnBtnClick}>Edit Profile</button>}
@@ -326,7 +378,11 @@ export default function UserProfilePage() {
           <option name="Created">Created Recipes</option>
           <option name="Saved">Saved Recipes</option>
         </select>
-            {(recipesDisplay === "Saved" && !savedRecipes.length) || (recipesDisplay === "Created" && !createdRecipes.length) ? <h2>No Recipes {recipesDisplay} Yet!</h2> : null}
+            { recipeIsFetching
+            ?
+            <Loading />
+            :
+            (recipesDisplay === "Saved" && !savedRecipes.length) || (recipesDisplay === "Created" && !createdRecipes.length) ? <h2>No Recipes {recipesDisplay} Yet!</h2> : null}
           <Slider {...settings}>
                 {recipesDisplay === "Saved" ? (savedRecipes?.map((recipe) => (
                     <RecipeCard recipe_url={recipe.image_url} title={recipe.name} calories={recipe.calories} category={recipe.category} recipe_id={recipe.recipe_id} key={recipe.recipe_id} ownername={recipe.ownername} owner_url={recipe.owner_url ? recipe.owner_url : "https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"} owner_id={recipe.ownder_id}/>

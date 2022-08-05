@@ -3,15 +3,18 @@ import './SearchResultGrid.css'
 import SearchResultCard from '../SearchResultCard/SearchResultCard'
 import FilterOptions from '../FilterOptions/FilterOptions'
 import { useAuthNavContext } from '../../Contexts/authNav'
+import Loading from '../Loading/Loading'
 import ReactPaginate from 'react-paginate'
 
-export default function SearchResultGrid({recipeList, displayFilter, handleOnSetFilter, filter}) {
+export default function SearchResultGrid({recipeList, displayFilter, handleOnSetFilter, filter, pageIsLoading}) {
 
   //get resultsType from the authNavContext
   const {resultsType, searchWord, transition, setTransition} = useAuthNavContext()
 
   // display filter options state variable
   const [displayFilterOptions, setDisplayFilterOptions] = React.useState(false)
+
+ 
 
   // onclick function for the filter button
   const handleFilterOptionsOnClick = (event) => {
@@ -78,12 +81,18 @@ export default function SearchResultGrid({recipeList, displayFilter, handleOnSet
           </div>
 
 
-          {/* conditionally render the did not find message */}
-          {recipeList.length == 0 ? 
+          {/* conditionally render the did not find message if the component is not loading*/}
+          {pageIsLoading 
+          ?
+          <Loading />
+          :
+          recipeList.length === 0
+          ? 
             <div className="no-result">
               <h3> Couldn't Find Any Recipe Matching <br /> <p>{`${searchWord}`}?</p></h3>
               {resultsType.includes("filter") ? <h3 className='no-match'>& Type: {`${filter}`}?</h3> : <></>}
-            </div> :
+            </div> 
+            :
             <></>
           }
           {/* Result Details */}
