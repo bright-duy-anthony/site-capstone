@@ -20,8 +20,6 @@ We aim to create an online platform for food enthusiasts, food influencers, food
 Deployment Website: [Reciholic](https://reciholic.surge.sh)
 
 ### Open-source libraries used
-
-- Add any links to open-source libraries used in your project.
 * [Tippy](https://atomiks.github.io/tippyjs)
 * [React-Slick](https://www.npmjs.com/package/react-slick)
 * [React-Paginate](https://www.npmjs.com/package/react-paginate)
