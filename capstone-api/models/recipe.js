@@ -138,7 +138,7 @@ class Recipe{
                         FROM recipe reci 
                         JOIN users ON reci.user_id=users.id 
                         WHERE user_id = $1
-                        LIMIT 300;
+                        LIMIT 150;
         `
 
         const results = await db.query(query, [user_id])

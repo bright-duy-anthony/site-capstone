@@ -10,15 +10,18 @@ Mentors Names: **Emma Blair, Connie Nguyen, Saurabh Gupta **
 
 Project Code Repository Links
 
-* [Frontend Repo Link]()
-* [Backend Repo Link]()
+* [Frontend Repo Link](https://github.com/the-brigadee/Reciholic/tree/main/capstone-ui)
+* [Backend Repo Link](https://github.com/the-brigadee/Reciholic/tree/main/capstone-api)
 
 ## Project Overview
 
-Add a quick summary of what your project theme and objectives are. 
+We aim to create an online platform for food enthusiasts, food influencers, foodies and generally anyone looking for a recipe. Therefore our app will make it easier for food lovers around the world to connect, share recipes with one another and discover new recipes to love.
 
-Deployment Website: **Add Link to Deployed Project**
+Deployment Website: [Reciholic](https://reciholic.surge.sh)
 
 ### Open-source libraries used
-
-- Add any links to open-source libraries used in your project.
+* [Tippy](https://atomiks.github.io/tippyjs)
+* [React-Slick](https://www.npmjs.com/package/react-slick)
+* [React-Paginate](https://www.npmjs.com/package/react-paginate)
+* [String-Strip-HTML](https://www.npmjs.com/package/string-strip-html)
+* [React-Phone-Input](https://www.npmjs.com/package/react-phone-input-2)

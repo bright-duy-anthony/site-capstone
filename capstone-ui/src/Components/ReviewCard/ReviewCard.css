@@ -4,6 +4,14 @@
     gap: 10px;
 }
 
+.review-detail a {
+    text-decoration: none;
+}
+
+.review-detail h5 {
+    color: black;
+}
+
 .review-detail {
     display: flex;
     flex-direction: row;
