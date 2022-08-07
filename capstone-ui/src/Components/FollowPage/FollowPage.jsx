@@ -5,11 +5,15 @@ import ApiClient from '../../Services/ApiClient'
 import { useAuthNavContext } from '../../Contexts/authNav'
 import Overlay from '../Overlay/Overlay'
 import { useParams } from 'react-router-dom'
+import Loading from '../Loading/Loading'
 
 
 export default function FollowPage() {
   // User array state variable
   const [usersList, setUsersList] = React.useState([])
+
+  // loading followers state variable
+  const [followIsLoading, setFollowerIsLoading] = React.useState(false)
 
   //get profileId and the followType from the useparams
   const {profileId, followType} = useParams()
@@ -19,7 +23,11 @@ export default function FollowPage() {
 
         // check the followType
         if(followType === "following"){
-            // Call the corresponding api request
+
+          // set the loading variable before calling the api
+          setFollowerIsLoading(true)
+
+          // Call the corresponding api request
             const {data, error} = await ApiClient.getProfileFollowing(profileId)
 
             //If there is an error send it to the console
@@ -27,8 +35,14 @@ export default function FollowPage() {
 
             // If there is data, set recipe list to it
             if(data) setUsersList(data.result)
+
+            // set the loading variable after calling the api
+          setFollowerIsLoading(false)
         }
         else if(followType === "followers"){
+          // set the loading variable before calling the api
+          setFollowerIsLoading(true)
+
             // Call the corresponding api request
             const {data, error} = await ApiClient.getProfileFollowers(profileId)
 
@@ -37,9 +51,11 @@ export default function FollowPage() {
 
             // If there is data, set recipe list to it
             if(data) setUsersList(data.result)
+
+            // set the loading variable after calling the api
+          setFollowerIsLoading(false)
         }
         else{
-            console.error("something went wrong")
         }
     }
 
@@ -53,7 +69,12 @@ export default function FollowPage() {
     <div className='usersearchpage'>
       
       {/* the div containing the result display*/}
-        <UserSearchGrid usersList={usersList}/>
+        {followIsLoading 
+        ?
+        <Loading />
+        :
+          <UserSearchGrid usersList={usersList}/>
+          }
         <Overlay />
     </div>
   )
