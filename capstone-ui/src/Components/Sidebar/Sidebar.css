@@ -159,7 +159,7 @@
     width: 45px !important;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
 
     .sidebar-open-contents .logo-container, .logo-container .logo {
         display: flex;

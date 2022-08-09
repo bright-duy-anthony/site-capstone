@@ -300,6 +300,12 @@ hamburger button styling
     }
 }
 
+@media (max-width: 500px) {
+    .navbar .logo-container, .logo-container .logo {
+        display: none;
+    }
+}
+
 @media (max-width: 450px) {
     .navbar {
         position: fixed;
@@ -338,6 +344,9 @@ hamburger button styling
     }
     .sidebar-toggle span {
         width: 80% !important;
+    }
+    .sidebar-toggle.open span:nth-child(1), .sidebar-toggle.open span:nth-child(4){
+        width: 0% !important;
     }
 }
 

@@ -251,7 +251,7 @@ function RecipeStep(recipe){
       <div className="recipe-detail-ingredients">
         <p className="ingredients-header"> Ingredients </p>
         <hr />
-        <p className="dropdown" onClick={showIngredientsOnClick}> {!displayIngredients ? "Show Instructions" : "Hide Instructions"} </p>
+        <p className="dropdown" onClick={showIngredientsOnClick}> {!displayIngredients ? "Show Ingredients" : "Hide Ingredients"} </p>
           <ul className={`ingredients-list ${displayIngredients ? "" : "disappear"}`}>
           {uniqueIngredients?.map((element,idx) => {
             if (element !== "" && element !== " ") {
