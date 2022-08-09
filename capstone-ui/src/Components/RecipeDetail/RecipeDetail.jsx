@@ -7,6 +7,8 @@ import Overlay from '../Overlay/Overlay'
 import { stripHtml } from "string-strip-html"
 import ReviewCard from '../ReviewCard/ReviewCard'
 import TextareaAutosize from 'react-autosize-textarea';
+import Loading from '../Loading/Loading'
+import Updating from '../Updating/Updating'
 
 
 export default function RecipeDetail() {
@@ -19,15 +21,24 @@ export default function RecipeDetail() {
    */
   const {setError} = useAuthNavContext()
 
+  // the current details of the recipe we are on
   const [recipe, setRecipe] = React.useState([])
+
+  // the recipe is loading state variables
+  const [recipeIsFectching, setRecipeIsFetching] = React.useState(false)
   
   React.useEffect(() => {
       const getRecipeById = async () => {
+        
+        // set recipeIsFetching before calling the api
+        setRecipeIsFetching(true)
           const {data, error} = await apiClient.recipeById(recipeId)
           if (error) setError((e) => ({ ...e, recommended: error }))
           if (data?.recipe) {
           setRecipe(data.recipe);
           }
+          // set recipeIsFetching after calling the api
+        setRecipeIsFetching(false)
       }
       getRecipeById()
   }, [setRecipe, setError, recipeId])
@@ -36,9 +47,9 @@ export default function RecipeDetail() {
     <div className='recipe-detail-container'>
 
       {/* Main Information */}
-      <RecipeMain recipe={recipe} />
+      <RecipeMain recipe={recipe} recipeIsFectching={recipeIsFectching}/>
       {/* Detailed Step Information */}
-      <RecipeStep recipe={recipe}/>
+      <RecipeStep recipe={recipe} recipeIsFectching={recipeIsFectching}/>
         
       <RecipeReview recipeId={recipeId}/>
 
@@ -128,6 +139,9 @@ function RecipeMain(recipe){
 
     }
 
+    // updating saved recipes state variable 
+    const [saveIsUpdating, setSaveIsUpdating] = React.useState(false)
+
   // useEffect to fetch the user's saved recipes
     React.useEffect(()=>{
       const getSavedRecipes = async () => {
@@ -147,9 +161,13 @@ function RecipeMain(recipe){
       const getTotalSaved = async () => {
         // get the number of saved recipes
         if(true){
+          // set setSaveIsUpdating before calling the api
+          setSaveIsUpdating(true)
           const {data, error} = await apiClient.totalSaved(recipeId)
         if(data)setTotalSaved(data.num_total)
        }
+       // set setSaveIsUpdating after calling the api
+       setSaveIsUpdating(false)
       }
 
 
@@ -174,8 +192,12 @@ function RecipeMain(recipe){
 
   return(
       <div className="recipe-detail-main">
-
         {/* Recipe detail info */}
+        {
+          recipe.recipeIsFectching
+          ?
+          <Loading />
+          :
         <div className="recipe-detail-info">
           {/* Recipe image  */}
           <div className="recipe-detail-img">
@@ -188,7 +210,11 @@ function RecipeMain(recipe){
             <h3> Recipe by <Link style={{textDecoration: 'none'}} to={`/profile/${recipe?.recipe?.user_id}`}>{recipe.recipe.username}</Link></h3>
             <h4> Categories : {recipe.recipe.category?.charAt(0).toUpperCase()+ recipe.recipe.category?.slice(1)} </h4>
             <h4> Calories: {recipe.recipe.calories} kcal</h4>
-            { totalSaved > 0 
+            {saveIsUpdating
+            ?
+            <Updating />
+            : 
+            totalSaved > 0 
             ? 
             <h6> <i> {totalSaved} users have saved this recipe </i></h6>
             :
@@ -199,6 +225,7 @@ function RecipeMain(recipe){
             </div>
           </div>
         </div>
+}
           
 
         {/* Recipe Edit buttons */}
@@ -252,13 +279,19 @@ function RecipeStep(recipe){
         <p className="ingredients-header"> Ingredients </p>
         <hr />
         <p className="dropdown" onClick={showIngredientsOnClick}> {!displayIngredients ? "Show Ingredients" : "Hide Ingredients"} </p>
-          <ul className={`ingredients-list ${displayIngredients ? "" : "disappear"}`}>
+          {
+            recipe.recipeIsFectching 
+            ?
+            <Loading />
+            :
+            <ul className={`ingredients-list ${displayIngredients ? "" : "disappear"}`}>
           {uniqueIngredients?.map((element,idx) => {
             if (element !== "" && element !== " ") {
               return <li key={idx}>{element}</li>;
             }
               })}
         </ul>
+        }
       </div>
 
 
@@ -267,7 +300,12 @@ function RecipeStep(recipe){
         <p className="directions-header"> Directions </p>
         <hr />
         <p className="dropdown" onClick={showDirectionsOnClick}> {!displayDirections ? "Show Directions" : "Hide Directions"} </p>
-        <ol className={`directions-list ${displayDirections ? "" : "disappear"}`}>
+        {
+          recipe.recipeIsFectching
+          ?
+          <Loading />
+          :
+          <ol className={`directions-list ${displayDirections ? "" : "disappear"}`}>
         {recipe?.recipe?.instructions?.split('. '||'! ').map((element,idx) => {
           if(element!==""){
               return <li key={idx}>{element}</li>;
@@ -275,6 +313,7 @@ function RecipeStep(recipe){
         })}
               
         </ol>
+        }
       </div>
     </div>
   )

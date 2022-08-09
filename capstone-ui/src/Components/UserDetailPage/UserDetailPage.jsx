@@ -104,6 +104,9 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
     }
   }
 
+  // profile is fetching state variable
+  const [profileIsFetching, setProfileIsFetching] = React.useState(false)
+
     // React useEffect to get the profile's details
     React.useEffect(() => {
       async function run(){
@@ -114,6 +117,9 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
         if (userCheck.id === -1){
           setFollowingOrNot(null)
         }
+
+        // set setProfileIsFetching before calling the api
+        setProfileIsFetching(true)
 
         // Call the appropriate API 
         const {data,error} = await ApiClient.getProfileDetails(profileId, userCheck.id)
@@ -126,6 +132,9 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
         if(error){
           setError(error)
         }
+
+        // set setProfileIsFetching after calling the api
+        setProfileIsFetching(false)
       }
   
       run()
@@ -134,6 +143,15 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
   return(
       <div className="profile-detail-main">
 
+        {/* check if the profile is loading from the component */}
+{
+  profileIsFetching
+  ?
+  <div className="center-loading-component">
+    <Loading /> 
+  </div>
+  :
+  <>
         {/* profile image */}
         <div className="profile-detail-image">
           <img src={profile.image_url ? profile.image_url : "https://toppng.com/uploads/preview/circled-user-icon-user-pro-icon-11553397069rpnu1bqqup.png"} alt="profile " className={profile.image_url ? "" : "default"}/>
@@ -186,6 +204,7 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
             :
             <button className="detail-owned-recipes" onClick={handleSavedOwnedRecipes}>  <img src="https://www.iconpacks.net/icons/1/free-wrench-icon-951-thumb.png" alt="" /> owned recipes </button>
             }
+            
             {profile.profile_id === userCheck.id 
             ?
             <></>
@@ -199,7 +218,10 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
           </div>
 
         </div>
+        </>
+        }
       </div>
+      
   )
 }
 
