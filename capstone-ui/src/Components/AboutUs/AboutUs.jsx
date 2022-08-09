@@ -117,10 +117,7 @@ export default function AboutUs() {
                       Name: Nnaemeka Odedo
                     </p>
                   <p className='occupation'>
-                    Occupation: student at Georgia State University
-                  </p>
-                  <p className="age">
-                    age: 19
+                    Occupation: Student at Georgia State University
                   </p>
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
@@ -131,7 +128,7 @@ export default function AboutUs() {
                       <i className="fa-brands fa-github"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/nnaemeka-odedo-b67297230/" target="_blank">
-                      <i class="fa-brands fa-linkedin-in"></i>
+                      <i className="fa-brands fa-linkedin-in"></i>
                     </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
@@ -152,15 +149,15 @@ export default function AboutUs() {
                       Name: Anthony Martin
                     </p>
                   <p className='occupation'>
-                    Occupation: student at Florida International University
-                  </p>
-                  <p className="age">
-                    age: 20
+                    Occupation: Student at Florida International University
                   </p>
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
-                    <a href="https://www.instagram.com/anthonymxrtin/?hl=en" target="_blank">
-                      <i className="fa-brands fa-instagram"></i>
+                  <a href="https://github.com/amart1015" target="_blank">
+                      <i className="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/anthony-martin-a573a31a7" target="_blank">
+                      <i className="fa-brands fa-linkedin-in"></i>
                     </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>
@@ -180,15 +177,15 @@ export default function AboutUs() {
                       Name: Duy Nguyen
                     </p>
                   <p className='occupation'>
-                    Occupation: student at Michigan Univesity
-                  </p>
-                  <p className="age">
-                    age: 20
+                    Occupation: Student at University of Michigan
                   </p>
                   <p className="about-title-socials"><b> Socials </b></p>
                   <div className="social-handles">
-                    <a href="https://www.instagram.com/_brightee/?hl=en" target="_blank">
-                    <i className="fa-brands fa-instagram"></i>
+                  <a href="https://github.com/doowee0509" target="_blank">
+                      <i className="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/duy-nguyennn" target="_blank">
+                      <i className="fa-brands fa-linkedin-in"></i>
                     </a>
                   </div>
                   <p className="about-title-about"><b> About me </b></p>

@@ -324,11 +324,11 @@ hamburger button styling
         border-radius: 12px;
         display: flex;
         top: 56px;
-        transform: translateX(10%);
+        transform: translateX(5%);
     }
 
     .search-container input {
-        width: 140px !important;
+        width: 150px !important;
     }
 
     .round:hover{
