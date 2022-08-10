@@ -344,11 +344,11 @@ export default function Popup(){
         <div className="form">
             <div className="input-field">
                 <label htmlFor="Email">Email</label>
-                <input type="email" name="email" placeholder="user@gmail.com"  onChange={handleOnFormInputChange} onKeyDown={handleKeyDown}/>
+                <input type="email" name="email" placeholder="user@gmail.com"  onChange={handleOnFormInputChange} onKeyDown={handleKeyDown} maxLength="70"/>
             </div>
             <div className="input-field">
                 <label htmlFor="Password">Password</label>
-                <input type="password" name="password" placeholder="password"  onChange={handleOnFormInputChange} onKeyDown={handleKeyDown}/>
+                <input type="password" name="password" placeholder="password"  onChange={handleOnFormInputChange} onKeyDown={handleKeyDown} maxLength="60"/>
             </div>
             <div className="footer">
                 <p>Don't have an account? <br/> Sign up&nbsp;
@@ -365,24 +365,24 @@ export default function Popup(){
         <div className="input-field split">
             <div className="input-row">
                 <label htmlFor="First Name">First Name</label>
-                <input type="text" name="first_name" value={form.first_name} placeholder="first"  onChange={handleOnFormInputChange}/>
+                <input type="text" name="first_name" value={form.first_name} placeholder="first"  onChange={handleOnFormInputChange} maxLength="30"/>
             </div>
             <div className="input-row">
                 <label htmlFor="Last Name">Last Name</label>
-                <input type="text" name="last_name" value={form.last_name} placeholder="last"  onChange={handleOnFormInputChange}/>
+                <input type="text" name="last_name" value={form.last_name} placeholder="last"  onChange={handleOnFormInputChange} maxLength="30"/>
             </div>
         </div>
         <div className="input-field">
             <label htmlFor="Email">Email</label>
-            <input type="email" name="email" value={form.email} placeholder="user@gmail.com"  onChange={handleOnFormInputChange}/>
+            <input type="email" name="email" value={form.email} placeholder="user@gmail.com"  onChange={handleOnFormInputChange} maxLength="70"/>
         </div>
         <div className="input-field">
             <label htmlFor="Password">Password</label>
-            <input type="password" name="password" value={form.password} placeholder="password" onChange={handleOnFormInputChange}/>
+            <input type="password" name="password" value={form.password} placeholder="password" onChange={handleOnFormInputChange} maxLength="60"/>
         </div>
         <div className="input-field">
             <label htmlFor="Confirm Password">Confirm Password</label>
-            <input type="password" name="confirm_password" value={form.confirm_password} placeholder="password" onChange={handleOnFormInputChange}/>
+            <input type="password" name="confirm_password" value={form.confirm_password} placeholder="password" onChange={handleOnFormInputChange} maxLength="60"/>
         </div>
         {(error?.confirm_password !== null && form.confirm_password !== "")  ? <span className="error">Password do not match.</span> : null}
         <div className="footer">
@@ -399,7 +399,7 @@ export default function Popup(){
             <div className="input-field split">
                 <div className="input-row">
                     <label htmlFor="username">Username *</label>
-                    <input type="text" name="username" placeholder="username" value={form.username} onChange={handleOnFormInputChange}/>
+                    <input type="text" name="username" placeholder="username" value={form.username} onChange={handleOnFormInputChange} maxLength="30"/>
                 </div>
                 <div className="input-row">
                     <label htmlFor="DOB">DOB *</label>
@@ -415,7 +415,7 @@ export default function Popup(){
             </div>
             <div className="input-field">
                 <label htmlFor="description">Bio (Optional)</label>
-                <input type="text" name="bio" placeholder="Bio" value={form.bio} onChange={handleOnFormInputChange}/>
+                <input type="text" name="bio" placeholder="Bio" value={form.bio} onChange={handleOnFormInputChange} maxLength="280"/>
             </div>
             <div className="footer">
                 <p>Already have an account? <br/> Sign in&nbsp;
@@ -432,7 +432,7 @@ export default function Popup(){
         <div className="form">
             <div className="input-field">
                 <label htmlFor="RecipeName">Recipe's Name</label>
-                <input type="name" name="recipe_name" onChange={handleOnFormInputChangeMealPlanner} onFocus={handleOnFormInputFocusMealPlanner} ref={inputRef} />
+                <input type="name" name="recipe_name" onChange={handleOnFormInputChangeMealPlanner} onFocus={handleOnFormInputFocusMealPlanner} ref={inputRef} maxLength="60"/>
             </div>
             <div className="meal-suggestion">
                 {displaySuggestion 
@@ -508,7 +508,7 @@ export default function Popup(){
         <div className="form">
             <div className="input-field">
                 <label htmlFor="Password">Enter Phone Number:</label>
-                <PhoneInput country="us" type="tel" value={formPlanShoppingList.phone_number} name="phone_number" onChange={handleOnFormInputShoppingList}/>
+                <PhoneInput country="us" type="tel" value={formPlanShoppingList.phone_number} name="phone_number" onChange={handleOnFormInputShoppingList} maxLength="40"/>
             </div>
             <div className="footer">
                 <button className="footer-btn" disabled={isLoading} onClick={handleOnSubmit}>
