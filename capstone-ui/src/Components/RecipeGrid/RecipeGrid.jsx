@@ -4,16 +4,36 @@ import RecipeCard from '../RecipeCard/RecipeCard'
 import apiClient from "../../Services/ApiClient"
 import {useAuthNavContext} from "../../Contexts/authNav"
 import Loading from '../Loading/Loading'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function RecipeGrid(){
     const [recipes, setRecipes] = React.useState([])
-    const {setError} = useAuthNavContext()
-
+    const {setError, showLoginForm, user} = useAuthNavContext()
+    const navigate = useNavigate()
     // page is loading state variable 
     const [pageIsLoading, setPageIsLoading] = React.useState(false)
 
-    
+    const addRecipe = async () => {
+        if(!user?.email){
+          showLoginForm();
+          setError((e) => ({ ...e, form:"You need to be logged in!" }))}
+        
+        if(user?.email){
+          navigate("/recipe/create")
+        }
+    }
+
+    const mealPlan = async () => {
+        if(!user?.email){
+          showLoginForm();
+          setError((e) => ({ ...e, form:"You need to be logged in!" }))}
+        
+        if(user?.email){
+          navigate("/mealplanner")
+        }
+    }
+
     React.useEffect(() => {
         const getRandomRecipes = async () => {
             // set is loading before calling the api
@@ -31,7 +51,13 @@ export default function RecipeGrid(){
     return(
         <div className='recipe-over'>
             <div className="recipe-container"> 
-                <h1 className="grid-title">Recommended</h1>
+                <div className="recipe-btn-wrapper">
+                    <h1 className="grid-title">Recommended</h1>
+                    <div className="btn-wrapper">
+                        <button onClick={addRecipe}>Add a Recipe</button>
+                        <button onClick={mealPlan}>My Meal Plan</button>
+                    </div>
+                </div>
                 <hr />
                 <div className="recipe-grid">
                     {pageIsLoading ?

@@ -6,6 +6,31 @@
     justify-content: center;
 }
 
+.recipe-btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 12px 15px 0px 0px;
+}
+
+.btn-wrapper button {
+    background-color: var(--primary-color);
+    padding: 12px;
+    border-radius: 12px;
+    color: aliceblue;
+    outline: none;
+    border: 0px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
 
 .recipe-container {
     display: flex;
