@@ -9,6 +9,9 @@ import ProfileRecipeCard from '../ProfileRecipeCard/ProfileRecipeCard'
 import Loading from '../Loading/Loading'
 
 export default function UserDetailPage() {
+// scroll to top
+  window.scrollTo({top: 0, behavior: 'auto'});
+
   // Get the user Id from the url parameter
   const {profileId} = useParams()
 

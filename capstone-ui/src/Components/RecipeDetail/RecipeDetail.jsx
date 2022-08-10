@@ -12,6 +12,9 @@ import Updating from '../Updating/Updating'
 
 
 export default function RecipeDetail() {
+
+  window.scrollTo(0,0);
+
   
   //get the recipe parameter from the url
   const {recipeId} = useParams()
@@ -43,7 +46,7 @@ export default function RecipeDetail() {
 
       // function to scroll to the top of the page
       const scrollToTop = () => {
-        window.scrollTo({top: 0, behavior: 'auto'});
+        window.scrollTo({top: 0, behavior: 'smooth'});
       }
 
 
