@@ -165,7 +165,7 @@ export default function Popup(){
                 dob: form.dob,
                 password: form.password,
                 userName: form.username,
-                bio:form.bio,
+                description:form.bio,
                 image_url: file?.fileByteA ? file?.fileByteA : "",
             })
             dataUse = data
