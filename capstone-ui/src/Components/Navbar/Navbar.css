@@ -26,6 +26,9 @@
 
 .profile-nav {
     max-height: 35px;
+    max-width: 35px;
+    min-height: 35px;
+    min-width: 35px;
 }
 
 .search-container input {
