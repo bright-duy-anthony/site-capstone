@@ -50,9 +50,17 @@ export default function RecipeDetail() {
       getRecipeById()
       //Scroll to the Top of the page
       scrollToTop()
-
-
   }, [setRecipe, setError, recipeId])
+
+
+  React.useMemo(() => {
+     // function to scroll to the top of the page
+     const scrollToTop = () => {
+      window.scrollTo({top: 0, behavior: 'auto'});
+    }
+    scrollToTop()
+  })
+
 
   return (
     <div className='recipe-detail-container'>
