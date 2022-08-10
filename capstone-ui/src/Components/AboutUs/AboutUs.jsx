@@ -253,7 +253,7 @@ contactForm.email = "";})
                 }
                 <label htmlFor="detail">Body</label>
                 <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body' value={contactForm.body}  onChange={handleContactFormOnChange} ref={textAreaRef}/>
-                <button className='contact-button' disabled={contactForm.body==='' || contactForm.title==='' || contactForm.email==='' || contactError} onClick={submitContact}> send </button>
+                <button className='contact-button' disabled={contactForm.body==='' || contactForm.title==='' || contactForm.email==='' || contactError} onClick={submitContact}> Send </button>
                 {contactIsSubmitting 
                 && 
                 <div className='contact-submitted'>
@@ -262,7 +262,7 @@ contactForm.email = "";})
                 {contactIsSubmitted 
                 && 
                 <div className='contact-submitted'>
-                  <p> Form is submitted!!! </p>
+                  <p> Submitted, thank you for your feedback!</p>
                 </div>}
               </div>
             </div>
