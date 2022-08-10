@@ -12,9 +12,6 @@ import Updating from '../Updating/Updating'
 
 
 export default function RecipeDetail() {
-
-  window.scrollTo(0,0);
-
   
   //get the recipe parameter from the url
   const {recipeId} = useParams()
@@ -44,25 +41,8 @@ export default function RecipeDetail() {
         setRecipeIsFetching(false)
       }
 
-      // function to scroll to the top of the page
-      const scrollToTop = () => {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      }
-
-
       getRecipeById()
-      //Scroll to the Top of the page
-      scrollToTop()
   }, [setRecipe, setError, recipeId])
-
-
-  React.useMemo(() => {
-     // function to scroll to the top of the page
-     const scrollToTop = () => {
-      window.scrollTo({top: 0, behavior: 'auto'});
-    }
-    scrollToTop()
-  })
 
 
   return (
@@ -362,7 +342,6 @@ function RecipeReview({recipeId}) {
 
       setIsLoading(false)
     }
-
     fetchReviews()
   }, [setError, setIsLoading, setReviews])
 
@@ -399,7 +378,17 @@ function RecipeReview({recipeId}) {
     setIsLoading(false)
   }
 
+// some ref
+const myRef = React.useRef(null)
 
+React.useEffect(() => {
+  // function to scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  scrollToTop()
+})
 
   return(
     <div className="recipe-review-main" id="review-scroll">
@@ -419,10 +408,10 @@ function RecipeReview({recipeId}) {
           {/* Conditional rendering for when the user is logged in/ not logged in */}
           {window.innerWidth > 420 
           ?
-            user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 20}}/>
+            user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 20}} ref={myRef}/>
             : <span>You must be <span className="links" onClick={showLoginForm}>logged in</span> to leave a review. Don't have an account? Sign up <span className="links" onClick={showRegisterForm}>here!</span></span>
           :
-          user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 10, height:10}}/>
+          user?.email ? <TextareaAutosize placeholder={'Leave a review'} onChange={handleOnInputChange} value={comment} style={{ minHeight: 10, height:10}} ref={myRef}/>
             : <span>You must be <span className="links" onClick={showLoginForm}>logged in</span> to leave a review. Don't have an account? Sign up <span className="links" onClick={showRegisterForm}>here!</span></span>
           }
           <hr />
