@@ -75,6 +75,7 @@ export default function ResultPage() {
     
       // set is loading after calling the api
       setPageIsLoading(false)
+      scrollToTop()
     }
     else {
       setSearchWord("")
@@ -95,6 +96,7 @@ export default function ResultPage() {
 
         // set is loading after calling the api
       setPageIsLoading(false)
+      scrollToTop()
       }
 
       if(resultsType === "recents"){
@@ -113,6 +115,7 @@ export default function ResultPage() {
         if(data) setRecipeList(data.result)
         // set is loading after calling the api
       setPageIsLoading(false)
+      scrollToTop()
         }
 
         
@@ -122,6 +125,13 @@ export default function ResultPage() {
     
   // run the above function
   run()
+
+  // function to scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  } 
+
+  
   }, [resultsType, searchWord, currCategory, filter])
 
   
