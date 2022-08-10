@@ -154,7 +154,7 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
      scrollToTop()
    })
 
-   
+
   return(
       <div className="profile-detail-main">
 

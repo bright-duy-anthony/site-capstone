@@ -69,7 +69,7 @@ class Search{
                     ) as total_recipe,
                 ( SELECT count(*) 
                     FROM follower_to_following ftf  
-                    WHERE ftf.following_id = users.id
+                    WHERE ftf.followed_id = users.id
                     ) as num_following, 
                 (SELECT following_id 
                     FROM 
