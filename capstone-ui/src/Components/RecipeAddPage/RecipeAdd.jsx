@@ -36,8 +36,8 @@ const handleOnInputChange = (event) => {
         user_id: user.id,
         category: form.category.toLowerCase(),
         description: form.description,
-        instructions: form.instructions.join("."),
-        ingredients: form.ingredients.join(","),
+        instructions: form.instructions.join(". "),
+        ingredients: form.ingredients.join(", "),
         calories: form.calories,
         image_url: file?.fileByteA ? file?.fileByteA : "",
         
@@ -197,7 +197,7 @@ React.useEffect(() => {
       <div className="form">
             <div className="input-field name">
                 <label htmlFor="Name">Name</label>
-                <input type="text" name="name" value={form.name} onChange={handleOnInputChange}/>
+                <input type="text" name="name" value={form.name} onChange={handleOnInputChange} maxLength="80"/>
             </div>
             <div className="input-field">
                 <label htmlFor="Category">Category</label>
@@ -210,7 +210,7 @@ React.useEffect(() => {
             </div>
             <div className="input-field">
                 <label htmlFor="Calories">Calories</label>
-                <input type="number" name="calories" value={form.calories} onChange={handleOnInputChange}/>
+                <input type="number" name="calories" value={form.calories} onChange={handleOnInputChange} maxLength="6"/>
             </div>
             <div className="input-field">
                 {/* Using drag and drop upload file instead of image URL */}
@@ -226,14 +226,14 @@ React.useEffect(() => {
                             if(idx === form.ingredients.length-1 && idx !== 0 ){
                                 return(
                                     <div className='ingredient-cap' key={idx}>
-                                        <input type="text" name="ingredients" value={ingredient} onChange={(event) => handleIngredient(event, idx)} onKeyDown={handleKeyDownIngredients} ref={currIngredient} autoFocus/>
+                                        <input type="text" name="ingredients" value={ingredient} onChange={(event) => handleIngredient(event, idx)} onKeyDown={handleKeyDownIngredients} ref={currIngredient} maxLength="50" autoFocus/>
                                         <button onClick={() => removeIngredient(idx)}>X</button>
                                     </div>
                                 )
                             }
                             return(
                                 <div className='ingredient-cap' key={idx}>
-                                    <input type="text" name="ingredients" value={ingredient} onChange={(event) => handleIngredient(event, idx)} onKeyDown={handleKeyDownIngredients}/>
+                                    <input type="text" name="ingredients" value={ingredient} onChange={(event) => handleIngredient(event, idx)} maxLength="50" onKeyDown={handleKeyDownIngredients}/>
                                     <button onClick={() => removeIngredient(idx)}>X</button>
                                 </div>
                                 )
@@ -248,7 +248,7 @@ React.useEffect(() => {
             </div>
             <div className="input-field">
                 <label htmlFor="Description">Description </label>
-                <textarea type="text" name="description" rows="4" value={form.description} onChange={handleOnInputChange}></textarea>
+                <textarea type="text" name="description" rows="4" value={form.description} onChange={handleOnInputChange} maxLength="300"></textarea>
             </div>
             <div className="input-field">
                 <label htmlFor="Instructions">Instructions  (no periods (.))</label>
@@ -258,14 +258,14 @@ React.useEffect(() => {
                             if(idx === form.instructions.length-1 && idx !== 0){
                                 return(
                                 <div className='instruction-cap' key={idx}>
-                                    <input type="text" name="instructions" rows="6" value={instruction}  onChange={(event) => handleInstruction(event, idx)} onKeyDown={handleKeyDownInstruction} autoFocus/>
+                                    <input type="text" name="instructions" rows="6" value={instruction}  onChange={(event) => handleInstruction(event, idx)} onKeyDown={handleKeyDownInstruction} maxLength="200" autoFocus/>
                                     <button onClick={() => {removeInstruction(idx)}}>X</button>
                                 </div>
                                 )
                             }
                             return(
                                 <div className='instruction-cap' key={idx}>
-                                    <input type="text" name="instructions" rows="6" value={instruction}  onChange={(event) => handleInstruction(event, idx)} onKeyDown={handleKeyDownInstruction}/>
+                                    <input type="text" name="instructions" rows="6" value={instruction}  onChange={(event) => handleInstruction(event, idx)} onKeyDown={handleKeyDownInstruction} maxLength="200"/>
                                     <button onClick={() => {removeInstruction(idx)}}>X</button>
                                 </div>
                             )
