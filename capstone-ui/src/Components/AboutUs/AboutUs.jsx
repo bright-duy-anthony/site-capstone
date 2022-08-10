@@ -5,7 +5,7 @@ import Bright from '../../Assets/Bright.JPG'
 import Anthony from '../../Assets/Anthony.jpg'
 import {Link} from 'react-router-dom'
 import TextareaAutosize from 'react-autosize-textarea';
-
+import validator from 'validator'
 
 export default function AboutUs() {
 
@@ -22,8 +22,8 @@ export default function AboutUs() {
     event.preventDefault()
 
     // check if email is valid
-    if(event.target.name === "email"){
-      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
+    if (event.target.name === "email") {
+      if (!validator.isEmail(event.target.value)) {
         setContactError(true)
       }
       else{
@@ -245,7 +245,7 @@ contactForm.email = "";})
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" value={contactForm.email} onChange={handleContactFormOnChange} placeholder='janedoe@gmail.com' ref={emailRef}/>
                 {
-                  contactError
+                  contactError && contactForm.email !== ""
                   ?
                   <p className='error'>Enter a valid email</p>
                   :

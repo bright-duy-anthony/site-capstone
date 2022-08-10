@@ -185,6 +185,7 @@ React.useEffect(() => {
 
   return (
     <div className='recipe-container'> 
+    <h1>Add a Recipe</h1>
     {(error?.recipeAddForm) ? <span className="error">{error?.recipeAddForm}</span> : null}
     <div className='recipe-add'>
       <div className="form">

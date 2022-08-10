@@ -21,6 +21,11 @@
 .nav-btn {
     max-height: 29px;
     padding: .5rem;
+    border-radius: 50%;
+}
+
+.profile-nav {
+    max-height: 35px;
 }
 
 .search-container input {

@@ -35,7 +35,7 @@ export default function AppContainer(){
 
 function App() {
 
-  const {setUser, setIsLoading, setError, setUserDetails} = useAuthNavContext()
+  const {setUser, setIsLoading, setError, setUserDetails, setVisibleSidebar} = useAuthNavContext()
 
   React.useEffect(() => {
     const fetchUser = async () => {
@@ -60,13 +60,12 @@ function App() {
 
     setIsLoading(false)
   }, [setUser, setIsLoading, setError])
-
   //return statement
   return (
     <div className="App">
         <BrowserRouter>
           <Navbar/>
-          <div className='app-body'>
+          <div className='app-body' >
             <Sidebar />
           {/* Create React routers for page navigation. */}
             <Routes>
