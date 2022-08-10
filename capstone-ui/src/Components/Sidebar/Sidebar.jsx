@@ -11,7 +11,7 @@ export default function Sidebar(){
     const [isDropped, setIsDropped] = React.useState(false) 
 
     // setResultsType from the auth context 
-    const {setResultsType, visibleSidebar, setVisibleSidebar} = useAuthNavContext()
+    const {setResultsType, visibleSidebar, setVisibleSidebar,user} = useAuthNavContext()
 
     // Function that handles category dropdown
     const handleCategoryDropdown = (event) =>{
@@ -80,10 +80,14 @@ export default function Sidebar(){
 
 
                 {/* Recent button */}
-                    <div className='toppy' onClick={() => {handleSidebarOnClick('recents')}}>
-                        <img src="https://www.shareicon.net/data/512x512/2015/09/28/108596_clock_512x512.png" alt="recent" />
-                        <p> Recents </p>
+                {user?.email && <Link to='/recipe/create' onClick={() => setVisibleSidebar(false)}>
+                    <div className='toppy' onClick={() => {handleSidebarOnClick('addrecipe')}}>
+                        <img src="https://static.thenounproject.com/png/1001670-200.png" alt="recent" />
+                        <p> Add Recipe </p>
                     </div>
+                </Link>}
+                
+                
                 
                 <div className='toppy' onClick={() => {handleSidebarOnClick('randomuser')}}>
 

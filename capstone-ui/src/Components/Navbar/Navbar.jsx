@@ -182,7 +182,7 @@ export default function Navbar(){
                     {user?.email ? null : <img id="login" src="https://img.icons8.com/ios-glyphs/344/login-rounded-right--v1.png" alt="temp icon" className='nav-btn' onClick={showLoginForm}/>}
                     {user?.email ? null : <img id="register" src="https://static.thenounproject.com/png/6478-200.png" alt="temp icon" className='nav-btn' onClick={showRegisterForm}/>}
                     {user?.email ? <div className="settings">
-                        <img id="profile" src="https://icons-for-free.com/iconfiles/png/512/person+user+icon-1320166085409390336.png" alt="temp icon" className='nav-btn' onClick={handleSettingClick}/>
+                        <img src={user?.imageUrl ? user.imageUrl : "https://toppng.com/uploads/preview/circled-user-icon-user-pro-icon-11553397069rpnu1bqqup.png"} alt='profile img' className='nav-btn profile-nav' onClick={handleSettingClick}/>
                         <div className="user-options">
                             <Link to="/profile">
                                 <div className="option one" onClick={handleSettingClick}>Profile</div>

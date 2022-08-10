@@ -6,6 +6,10 @@
     overflow-x: hidden;
 }
 
+h2.mealplannerheader {
+    margin:2%;
+}
+
 .MealPlannerPage .main{
     display: flex;
     flex-direction: row;

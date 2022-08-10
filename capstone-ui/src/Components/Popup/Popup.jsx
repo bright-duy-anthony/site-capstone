@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import MealPlannerSuggestion from '../MealPlannerSuggestion/MealPlannerSuggestion'
 import PhoneInput from 'react-phone-input-2'
 import DragDropFile from '../DragDrop/DragDrop'
+import validator from 'validator'
 
 export default function Popup(){
     //needed functions from useAuthNavContext
@@ -58,7 +59,7 @@ export default function Popup(){
         event.preventDefault()
         
         if (event.target.name === "email") {
-            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
+            if (!validator.isEmail(event.target.value)) {
                 setError((e) => ({ ...e, email: "Please enter a valid email." }))
             } else {
                 setError((e) => ({ ...e, email: null }))

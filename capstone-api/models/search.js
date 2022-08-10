@@ -130,7 +130,7 @@ class Search{
             users.id as user_id
         FROM recipe reci 
         JOIN users ON reci.user_id=users.id
-        ORDER BY reci.updated_at
+        ORDER BY reci.created_at
         LIMIT 25
         ;
          `)

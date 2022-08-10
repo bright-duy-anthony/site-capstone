@@ -27,6 +27,7 @@ export default function RecipeCard({title, recipe_url, recipe_id, ownername, own
     return word
   }
 
+  console.log(owner_url)
   return ( 
     <div className='recipe-card'>
       {/* Food's profile picture here */}
