@@ -51,15 +51,8 @@ export default function AboutUs() {
 
   // handle contact form on submit function
   const submitContact = () => {
-    
     setContactIsSubmitted(false)
     setContactIsSubmitting(true)
-
-    // if email error do not submit
-    if(contactError || contactForm.email === ""){
-      return 
-    }
-
     //call to form submit service that emails us the form information
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     axios.post('https://formsubmit.co/ajax/anthony.martin.site@codepath.org', {
@@ -256,7 +249,7 @@ export default function AboutUs() {
                 }
                 <label htmlFor="detail">Body</label>
                 <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body' value={contactForm.body}  onChange={handleContactFormOnChange} ref={textAreaRef}/>
-                <button className='contact-button' onClick={submitContact}> send </button>
+                <button className='contact-button' disabled={contactForm.body==='' || contactForm.title==='' || contactForm.email==='' || contactError} onClick={submitContact}> send </button>
                 {contactIsSubmitting 
                 && 
                 <div className='contact-submitted'>

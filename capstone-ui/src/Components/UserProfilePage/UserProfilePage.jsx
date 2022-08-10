@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import './UserProfilePage.css'
 import RecipeCard from '../RecipeCard/RecipeCard';
@@ -10,6 +11,7 @@ import Overlay from '../Overlay/Overlay'
 import { useNavigate } from 'react-router-dom';
 import DragDropFile from '../DragDrop/DragDrop';
 import Loading from '../Loading/Loading';
+
 
 
 export default function UserProfilePage() {
@@ -383,7 +385,12 @@ export default function UserProfilePage() {
             ?
             <Loading />
             :
-            (recipesDisplay === "Saved" && !savedRecipes.length) || (recipesDisplay === "Created" && !createdRecipes.length) ? <h2>No Recipes {recipesDisplay} Yet!</h2> : null}
+            (recipesDisplay === "Saved" && !savedRecipes.length) || (recipesDisplay === "Created" && !createdRecipes.length) 
+            ? 
+            <div><h2>No Recipes {recipesDisplay} Yet!</h2>{recipesDisplay==="Created" &&<h4>Add your recipe&nbsp;<Link to="/recipe/create" style={{color:'#ff7f50'}}>here</Link></h4>}</div>: null}
+            
+
+            
           <Slider {...settings}>
                 {recipesDisplay === "Saved" ? (savedRecipes?.map((recipe) => (
                     <RecipeCard recipe_url={recipe.image_url} title={recipe.name} calories={recipe.calories} category={recipe.category} recipe_id={recipe.recipe_id} key={recipe.recipe_id} ownername={recipe.ownername} owner_url={recipe.owner_url ? recipe.owner_url : "https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"} owner_id={recipe.ownder_id}/>

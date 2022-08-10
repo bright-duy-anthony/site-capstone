@@ -112,6 +112,10 @@ p.about-title-about{
     gap: 10px;
 }
 
+.contact-button:disabled{
+    background-color: gray;
+}
+
 .contact-button:hover{
     background-color: gray;
 }

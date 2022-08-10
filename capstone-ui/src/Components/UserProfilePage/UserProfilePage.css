@@ -179,6 +179,10 @@ Slider styling
 .carousel h3{
     margin-bottom: 0;
 }
+.carousel h4{
+    display:flex;
+    justify-content: center;
+}
 
 .slick-slider {
     position: relative;
