@@ -110,6 +110,13 @@ export default function Popup(){
 
     const inputRef = React.useRef(null);
 
+    // function for pressing enter while searching
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && form.email !== "" && form.password !== "") {
+            handleOnSubmit(event)
+        }
+    }
+
     // Function that runs when the input field is focused on
     const handleOnFormInputFocusMealPlanner = async (event) => {
         //prevent the events default behaviour  
@@ -337,11 +344,11 @@ export default function Popup(){
         <div className="form">
             <div className="input-field">
                 <label htmlFor="Email">Email</label>
-                <input type="email" name="email" placeholder="user@gmail.com"  onChange={handleOnFormInputChange}/>
+                <input type="email" name="email" placeholder="user@gmail.com"  onChange={handleOnFormInputChange} onKeyDown={handleKeyDown}/>
             </div>
             <div className="input-field">
                 <label htmlFor="Password">Password</label>
-                <input type="password" name="password" placeholder="password"  onChange={handleOnFormInputChange}/>
+                <input type="password" name="password" placeholder="password"  onChange={handleOnFormInputChange} onKeyDown={handleKeyDown}/>
             </div>
             <div className="footer">
                 <p>Don't have an account? <br/> Sign up&nbsp;
