@@ -36,6 +36,13 @@ export default function UserSearchGrid({usersList, pageIsLoading}) {
     setItemOffset(newOffset);
 
     setTransition(transition+1)
+
+    // function to scroll to the top of the page
+    const scrollToTop = () => {
+      window.scrollTo({top: 0, behavior: 'auto'});
+    }
+
+    scrollToTop()
   };
   
   const [selected, setSelected] = React.useState("none")

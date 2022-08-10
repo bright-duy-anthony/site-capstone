@@ -136,8 +136,14 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
         // set setProfileIsFetching after calling the api
         setProfileIsFetching(false)
       }
+
+      // function to scroll to the top of the page
+      const scrollToTop = () => {
+        window.scrollTo({top: 0, behavior: 'auto'});
+      }
   
       run()
+      scrollToTop()
     }, [profileId,followingOrNot])
 
   return(
@@ -305,6 +311,12 @@ function RecipeDisplay({showLoginForm, setError, profileId, displayType, transit
     const newOffset = (event.selected * itemsPerPage) % profileRecipeList.length;
     setItemOffset(newOffset);
     setTransition(transition + 1)
+
+    // function to scroll to the top of the page
+    const scrollToTop = () => {
+      window.scrollTo({top: 385, behavior: 'auto'});
+    }
+    scrollToTop()
   };
 
 

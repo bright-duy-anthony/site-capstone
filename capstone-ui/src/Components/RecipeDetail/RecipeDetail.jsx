@@ -40,7 +40,18 @@ export default function RecipeDetail() {
           // set recipeIsFetching after calling the api
         setRecipeIsFetching(false)
       }
+
+      // function to scroll to the top of the page
+      const scrollToTop = () => {
+        window.scrollTo({top: 0, behavior: 'auto'});
+      }
+
+
       getRecipeById()
+      //Scroll to the Top of the page
+      scrollToTop()
+
+
   }, [setRecipe, setError, recipeId])
 
   return (

@@ -61,6 +61,11 @@ export default function SearchResultGrid({recipeList, displayFilter, handleOnSet
     const newOffset = (event.selected * itemsPerPage) % recipeList.length;
     setItemOffset(newOffset);
     setTransition(transition+1)
+    // function to scroll to the top of the page
+    const scrollToTop = () => {
+      window.scrollTo({top: 0, behavior: 'auto'});
+    }
+    scrollToTop()
   };
   
   const [selected, setSelected] = React.useState("none")
