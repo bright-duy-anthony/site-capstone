@@ -86,7 +86,7 @@ return (
 
                     {/* users following */}
                     <div className="result-user-following">
-                        <p>{people.num_following} following</p>
+                        <p>Following {people.num_following}</p>
                     </div>
 
                     {/* users number of recipes created */}

@@ -62,12 +62,16 @@ export default function AboutUs() {
 })
     .then(response => {
       setContactIsSubmitting(false); 
-      setContactIsSubmitted(true);})
+      setContactIsSubmitted(true);
+      inputRef.current.value = "";
+      emailRef.current.value = "";
+      textAreaRef.current.value = "";
+    contactForm.title = "";
+  contactForm.body = "";
+contactForm.email = "";})
     .catch(error => setContactError(error));
 
-    inputRef.current.value = ""
-    emailRef.current.value = ""
-    textAreaRef.current.value = ""
+    
     
   }
   return (

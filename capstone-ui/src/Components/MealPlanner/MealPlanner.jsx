@@ -61,6 +61,7 @@ export default function MealPlanner({imageUrl}) {
 return (
 <div className="MealPlannerPage">
    <div className="content">
+      <h1>Your Meal Plan</h1>
          <div className="main">
             <div className="day">
                <div className="background">
@@ -158,14 +159,14 @@ return (
                   {isLoading ? "Loading..." : "Add Recipe"}
                </button>
                <button className="footer-btn deletemealplan" disabled={isLoading} onClick={handleOnDelete}>
-                  {isLoading ? "Loading..." : "Reset Mealplan"}
+                  {isLoading ? "Loading..." : "Reset Meal Plan"}
                </button>
             <Overlay message={shoppingListMessage}/>
          </div>
    </div>
    <div className="shopping-list">
             <h2>Shopping List</h2>
-            {ingredientList.length ? <h5>Check the ingredients you already have.</h5> : null}
+            {ingredientList.length ? <h4>Check the ingredients you already have.</h4> : null}
             <div className="list">
                {!ingredientList.length ? <h3>Nothing here yet! Add a recipe to create a shopping list.</h3> : null}
                {ingredientList?.map((ingr, idx) => {

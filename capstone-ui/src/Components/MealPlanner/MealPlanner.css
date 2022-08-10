@@ -31,11 +31,17 @@
     min-width: fit-content;
     padding: 10px;
     display: flex;
+    align-items: center;
     border: 1px solid var(--border-color);
     border-radius: 12px;
     margin:2%;
     box-shadow: 0px 0px 10px lightgray;
 
+}
+
+.MealPlannerPage .content h1 {
+    margin-bottom: 0;
+    color: var(--primary-color);
 }
 
 .MealPlannerPage .recipes {
