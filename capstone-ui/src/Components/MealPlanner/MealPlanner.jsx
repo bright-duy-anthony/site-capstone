@@ -60,8 +60,8 @@ export default function MealPlanner({imageUrl}) {
  }
 return (
 <div className="MealPlannerPage">
+<h2 className='mealplannerheader'>Hello {user.first_name}!<br/> Here is your Meal Plan:</h2>
    <div className="content">
-      <h1>Your Meal Plan</h1>
          <div className="main">
             <div className="day">
                <div className="background">

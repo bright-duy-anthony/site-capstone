@@ -241,9 +241,9 @@ contactForm.email = "";})
             <div className="about-section-content">
               <div className="contact-form" >
                 <label htmlFor="title">Title</label>
-                <input type="text" name='title' value={contactForm.title} onChange={handleContactFormOnChange} ref={inputRef}/>
+                <input type="text" name='title' value={contactForm.title} onChange={handleContactFormOnChange} ref={inputRef} maxLength="60"/>
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={contactForm.email} onChange={handleContactFormOnChange} placeholder='janedoe@gmail.com' ref={emailRef}/>
+                <input type="email" name="email" value={contactForm.email} onChange={handleContactFormOnChange} placeholder='janedoe@gmail.com' ref={emailRef} maxLength="70"/>
                 {
                   contactError && contactForm.email !== ""
                   ?
@@ -252,7 +252,7 @@ contactForm.email = "";})
                   <></>
                 }
                 <label htmlFor="detail">Body</label>
-                <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body' value={contactForm.body}  onChange={handleContactFormOnChange} ref={textAreaRef}/>
+                <TextareaAutosize placeholder={'What would you like us to know?'} style={{ minHeight: 20}} name='body' value={contactForm.body}  onChange={handleContactFormOnChange} ref={textAreaRef} maxLength="240"/>
                 <button className='contact-button' disabled={contactForm.body==='' || contactForm.title==='' || contactForm.email==='' || contactError} onClick={submitContact}> Send </button>
                 {contactIsSubmitting 
                 && 
