@@ -159,7 +159,7 @@ return (
                   {isLoading ? "Loading..." : "Add Recipe"}
                </button>
                <button className="footer-btn deletemealplan" disabled={isLoading} onClick={handleOnDelete}>
-                  {isLoading ? "Loading..." : "Reset Meal Pgitlan"}
+                  {isLoading ? "Loading..." : "Reset Meal Plan"}
                </button>
             <Overlay message={shoppingListMessage}/>
          </div>
