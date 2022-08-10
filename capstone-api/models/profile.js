@@ -138,6 +138,25 @@ class Profile{
          //return the result    
          return result.rows
     }
+
+    static async getNumFollowers(profileId){
+        /**  Check if profileId is null and throw an error
+         *  
+         * */ 
+
+         if(!profileId){
+            throw new BadRequestError("profile id is invalid")
+        }
+        const result  = await db.query(`
+            SELECT COUNT(*) 
+            FROM follower_to_following ftf  
+            WHERE ftf.followed_id = $1
+        `, [profileId])
+
+        //return the result  
+        console.log(result.rows[0]);  
+        return result.rows[0]
+    }
 }
 
 module.exports=Profile

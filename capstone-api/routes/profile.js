@@ -115,8 +115,27 @@ router.get("/:profileId", async (req, res, next) => {
   catch(err){
     next(err)
   }
-  
 })
+
+  /**
+   * Route to get the total number of followers of a user
+   */
+
+   router.get("/getTotalFollowers/:profileId", async(req, res, next) => {
+    try{
+      //extract the profile Id from the url 
+      const {profileId} = req.params
+      
+      //call the required function
+      const result = await Profile.getNumFollowers(profileId)
+  
+      //  return the answer
+      res.status(200).json(result)
+    }
+    catch(err){
+      next(err)
+    }
+  })
 
 
 

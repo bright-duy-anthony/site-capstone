@@ -127,6 +127,9 @@ class ApiClient {
     async getProfileFollowing(profileId){
         return await this.request({endpoint: `profile/following/${profileId}`, method: `GET`, data: {}})
     }
+    async getNumOfFollowers(profileId) {
+        return await this.request({ endpoint: `profile/getTotalFollowers/${profileId}`, method: `GET`})
+    }
     async updateProfile(creds){
         return await this.request({endpoint: `auth/update`, method: `PUT`, data:creds})}
 

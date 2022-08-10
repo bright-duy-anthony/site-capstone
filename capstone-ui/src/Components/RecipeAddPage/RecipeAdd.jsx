@@ -116,6 +116,9 @@ const handleInstruction = (event, index) => {
 
 // function for pressing enter while searching
 const handleKeyDownInstruction = (event) => {
+    if(form.instructions[form.instructions.length-1].length < 1){
+        return
+    }
     if (event.key === 'Enter') {
         // add another instruction form
         setForm((f) => ({ ...f, instructions: [...form.instructions, ""] }))
@@ -123,6 +126,9 @@ const handleKeyDownInstruction = (event) => {
 }
 // function for pressing enter while searching
 const handleKeyDownIngredients = (event) => {
+    if(form.ingredients[form.ingredients.length-1].length < 1){
+        return
+    }
     if (event.key === 'Enter') {
         // add another ingredients form
         setForm((f) => ({ ...f, ingredients: [...form.ingredients, ""] }))

@@ -10,10 +10,13 @@ export default function UserSearchCard({people, even}) {
     const {user, showLoginForm, setError} = useAuthNavContext()
 
     // followingorNot state variable
-    const [followingOrNot, setFollowingOrNot] = React.useState(people.is_following)
+    const [followingOrNot, setFollowingOrNot] = React.useState(people.is_following) 
+    // number of followers state variable
+    const [numFollowers, setNumFollowers] = React.useState(0)
 
     // const useableUser
     var userCheck = user.id ? user : {id : -1}
+    
 
     const bioToScreen = () => {
         if(!people.description) return ""
@@ -24,7 +27,6 @@ export default function UserSearchCard({people, even}) {
             return word
         }
     }
-
   
     // function to handle unfollowing
     const handleOnClickFollowingBtn = async (event) => {
@@ -50,6 +52,21 @@ export default function UserSearchCard({people, even}) {
         if(error){
             setError((e) => ({ ...e, form: error }))
         }
+
+        // always call this backend
+        if(true){
+            
+        // call the appropriate api
+        const {data, error} = await ApiClient.getNumOfFollowers(people.user_id)
+        if(data){
+            setNumFollowers(data.count)
+            
+            
+        }
+        if(error){
+            setError((e) => ({ ...e, form: error }))
+        }
+        }
     }
 
   // rerender card when follow or following button is clicked
@@ -61,7 +78,18 @@ export default function UserSearchCard({people, even}) {
     if (userCheck.id === -1){
         setFollowingOrNot(null)
     }
+    
 }, [followingOrNot, user])
+
+// set the number of followers when the page is first clicked
+React.useEffect(() => {
+    async function run(){
+        setNumFollowers(people.num_following)
+    }
+    
+    // run me
+    run()
+}, [])
 
 return (
     <div className={`search-user-card ${even ? "even" : ""}`}>
@@ -84,9 +112,9 @@ return (
                 {/* display people and number of recipes created */}
                 <div className="result-user-numbers">
 
-                    {/* users following */}
+                    {/* users followers */}
                     <div className="result-user-following">
-                        <p> {people.num_following} Followers</p>
+                        <p> {numFollowers} Followers</p>
                     </div>
 
                     {/* users number of recipes created */}
