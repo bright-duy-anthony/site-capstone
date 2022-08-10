@@ -154,7 +154,7 @@ class Profile{
         `, [profileId])
 
         //return the result  
-        console.log(result.rows[0]);  
+          
         return result.rows[0]
     }
 }
