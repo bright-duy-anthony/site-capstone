@@ -146,6 +146,15 @@ function ProfileMain({user, showLoginForm, setError, profileId, displayType, han
       scrollToTop()
     }, [profileId,followingOrNot])
 
+    React.useMemo(() => {
+      // function to scroll to the top of the page
+      const scrollToTop = () => {
+       window.scrollTo({top: 0, behavior: 'auto'});
+     }
+     scrollToTop()
+   })
+
+   
   return(
       <div className="profile-detail-main">
 

@@ -337,6 +337,8 @@ export default function UserProfilePage() {
     setDeleteAction("account")
     showPopup()
   }
+
+  
   
   return (
     <div className='user-profile-container'>
