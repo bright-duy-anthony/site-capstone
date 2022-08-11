@@ -44,6 +44,15 @@ export default function RecipeDetail() {
       getRecipeById()
   }, [setRecipe, setError, recipeId])
 
+  React.useEffect(() => {
+    // function to scroll to the top of the page
+    const scrollToTop = () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  
+    scrollToTop()
+  })
+
 
   return (
     <div className='recipe-detail-container'>
@@ -380,15 +389,6 @@ function RecipeReview({recipeId}) {
 
 // some ref
 const myRef = React.useRef(null)
-
-React.useEffect(() => {
-  // function to scroll to the top of the page
-  const scrollToTop = () => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  scrollToTop()
-})
 
   return(
     <div className="recipe-review-main" id="review-scroll">
