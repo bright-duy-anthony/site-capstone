@@ -26,6 +26,6 @@ Deployment Website: [Reciholic](https://reciholic.surge.sh)
 * [String-Strip-HTML](https://www.npmjs.com/package/string-strip-html)
 * [React-Phone-Input](https://www.npmjs.com/package/react-phone-input-2)
 
-# Project Presentation
+# Project Walkthrough
 
 ![Reciholic](https://user-images.githubusercontent.com/54002497/184470717-efb285ab-e4a4-4d37-a68e-e74be6aba089.gif)
