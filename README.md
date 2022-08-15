@@ -17,6 +17,7 @@ Project Code Repository Links
 
 We aim to create an online platform for food enthusiasts, food influencers, foodies and generally anyone looking for a recipe. Therefore our app will make it easier for food lovers around the world to connect, share recipes with one another and discover new recipes to love.
 
+Presentation Deck Link: [Presentation](https://docs.google.com/presentation/d/1Ezi8lU-BWe8ZSOv9tfa7Sq0H2DVj1sdPK7XoU4dB7ys/edit?usp=sharing)
 Deployment Website: [Reciholic](https://reciholic.surge.sh)
 
 ### Open-source libraries used
