@@ -1,5 +1,5 @@
 const express = require("express")
-const {BadRequestError, NotFoundError} = require("./utils/errors")
+const {NotFoundError} = require("./utils/errors")
 const security=require("./middleware/security")
 const authRoutes = require("./routes/auth")
 const recipeRoutes = require("./routes/recipe")
@@ -10,6 +10,7 @@ const followRoutes = require("./routes/follow")
 const searchRoutes = require("./routes/search")
 const profileRoutes = require("./routes/profile")
 const bodyParser = require('body-parser');
+const {PORT} = require("./config")
 const {TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,TWILIO_PHONE_NUMBER} = require("./config")
 const client = require('twilio')(
   TWILIO_ACCOUNT_SID,
@@ -77,5 +78,8 @@ app.use((err, req, res, next) => {
     })
 })
 
+app.listen(PORT, () => {
+  console.log(`🚀 Server listening on port ` + PORT)
+})
 
 module.exports=app
