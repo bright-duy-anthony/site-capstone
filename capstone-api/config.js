@@ -20,13 +20,6 @@ function getDatabaseUri() {
   return process.env.DATABASE_URL || `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}?sslmode=require`;
 }
 
-
-
-console.log("App Config".red)
-console.log("PORT:".blue, PORT)
-console.log("Database URI:".blue, getDatabaseUri())
-console.log("---")
-
 module.exports={
     PORT,
     getDatabaseUri,
