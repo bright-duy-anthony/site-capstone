@@ -4,9 +4,9 @@ SITE Course Year: **2022**
 
 Cohort: **Workday**
 
-Team Member Names:** Anthony Martin, Nnaemeka Odedo, Duy Nguyen**
+Team Member Names:**Anthony Martin, Nnaemeka Odedo, Duy Nguyen**
 
-Mentors Names: **Emma Blair, Connie Nguyen, Saurabh Gupta **
+Mentors Names: **Emma Blair, Connie Nguyen, Saurabh Gupta**
 
 Project Code Repository Links
 
