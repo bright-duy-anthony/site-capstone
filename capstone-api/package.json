@@ -4,8 +4,8 @@
   "description": "Backend code of the project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --ignore 'db/*' server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --ignore 'db/*' server.js",
+    "dev": "nodemon --ignore 'db/*' server.js"
   },
   "keywords": [],
   "author": "",
