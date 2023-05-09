@@ -2,7 +2,7 @@
   "name": "capstone-api",
   "version": "1.0.0",
   "description": "Backend code of the project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node --ignore 'db/*' server.js",
     "dev": "nodemon --ignore 'db/*' server.js"
