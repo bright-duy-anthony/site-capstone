@@ -1,6 +1,5 @@
 const db= require("../db")
-const {BadRequestError,UnauthorizedError } = require("../utils/errors");
-const User=require("./user");
+const {BadRequestError} = require("../utils/errors");
 
 /**
  * A utility class for retrieving profile information from the database
