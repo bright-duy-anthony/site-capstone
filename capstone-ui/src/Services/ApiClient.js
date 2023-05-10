@@ -188,5 +188,5 @@ class ApiClient {
     }
 }
 
-export default new ApiClient(DEVELOPMENT_API_URL)
-// export default new ApiClient(PRODUCTION_API_URL)
+// export default new ApiClient(DEVELOPMENT_API_URL)
+export default new ApiClient(PRODUCTION_API_URL)
