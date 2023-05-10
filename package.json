@@ -1,0 +1,9 @@
+{
+    "name": "capstone-api",
+    "version": "1.0.0",
+    "description": "Backend code of the project",
+    "main": "capstone-api/server.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
